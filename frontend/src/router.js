@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router'
 
 import { Router, Route } from 'react-router'
 
-import WelcomePage from './components/WelcomePage'
+import WelcomePage from './components/Welcome'
 
 export default (
   <Router history={browserHistory}>
