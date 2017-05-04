@@ -1,13 +1,13 @@
 import React from 'react'
+import { browserHistory } from 'react-router'
 
 import { Router, Route } from 'react-router'
 
-import someComponent from './somePath'
+import WelcomePage from './components/WelcomePage'
 
 export default (
   <Router history={browserHistory}>
-    <Route path="/" component={someComponent} >
-      <Route path="somePath" component={someComponent} />
+    <Route path="/" component={ WelcomePage} >
     </Route>
   </Router>
 )
