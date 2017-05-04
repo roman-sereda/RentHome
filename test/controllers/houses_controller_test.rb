@@ -7,7 +7,7 @@ class HousesControllerTest < ActionController::TestCase
   test "should return house data" do
     house = create(:house)
     get :show, params: { id: house.id }
-    assert_response :success
+    assert_response 200
 
     jdata = JSON.parse response.body
     assert_equal house.city, jdata["house"]["city"]
@@ -68,5 +68,30 @@ class HousesControllerTest < ActionController::TestCase
     jdata = JSON.parse response.body
     errors = { "id" => ["Wrong house ID provided"] }
     assert_equal errors, jdata["errors"]
+  end
+
+  test "should return filtered houses if provided filters" do
+    create(:house)
+    create(:house, city: "new city")
+    house = create(:house, city: "new city", wi_fi: false)
+    get :search, params: { page: 1, filters: {
+                                      city: "new city",
+                                      wi_fi: false
+                                    }}
+    assert_response 200
+
+    jdata = JSON.parse response.body
+    assert_equal 1, jdata["houses"].count
+  end
+
+  test "should return houses if not provided filters" do
+    create(:house)
+    create(:house, city: "new city")
+    house = create(:house, city: "new city", wi_fi: false)
+    get :search, params: { page: 1, filters: {}}
+    assert_response 200
+
+    jdata = JSON.parse response.body
+    assert_equal 3, jdata["houses"].count
   end
 end

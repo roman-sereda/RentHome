@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   end
 
   resource :houses, only: [:show, :create, :update, :destroy]
+  get "/houses/search", to: "houses#search"
 
 end
