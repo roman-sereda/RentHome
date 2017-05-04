@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170504100201) do
+ActiveRecord::Schema.define(version: 20170504100826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,7 +38,12 @@ ActiveRecord::Schema.define(version: 20170504100201) do
     t.json     "tokens"
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
+    t.string   "surname"
+    t.string   "country"
+    t.string   "city"
+    t.index ["city"], name: "index_guests_on_city", using: :btree
     t.index ["confirmation_token"], name: "index_guests_on_confirmation_token", unique: true, using: :btree
+    t.index ["country"], name: "index_guests_on_country", using: :btree
     t.index ["email"], name: "index_guests_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_guests_on_reset_password_token", unique: true, using: :btree
     t.index ["uid", "provider"], name: "index_guests_on_uid_and_provider", unique: true, using: :btree
@@ -67,7 +72,12 @@ ActiveRecord::Schema.define(version: 20170504100201) do
     t.json     "tokens"
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
+    t.string   "surname"
+    t.string   "country"
+    t.string   "city"
+    t.index ["city"], name: "index_hosts_on_city", using: :btree
     t.index ["confirmation_token"], name: "index_hosts_on_confirmation_token", unique: true, using: :btree
+    t.index ["country"], name: "index_hosts_on_country", using: :btree
     t.index ["email"], name: "index_hosts_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_hosts_on_reset_password_token", unique: true, using: :btree
     t.index ["uid", "provider"], name: "index_hosts_on_uid_and_provider", unique: true, using: :btree
