@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Grid, Row, Col } from 'react-flexbox-grid'
 import styles from './styles.css'
 
 const data = [

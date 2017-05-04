@@ -9,6 +9,9 @@ export default class Card extends Component{
       <div className = 'card'>
         <div className = 'description'>Трихкімнатна квартира в центрі Рівного</div>
         <div className = 'town'>м.Рівне</div>
+        <div className = 'card-image-wrapper'>
+          <img src = 'https://static1.comicvine.com/uploads/original/11128/111283068/5260519-franku+%28kys%29.jpg' className = 'card-image' />
+        </div>
         <div className = 'price' >
           <span className = 'price-text'>899</span>
           <span className = 'price-text secondary'>грн/міс</span>
