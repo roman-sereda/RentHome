@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 
-import someReducers from './somePath'
+import userReducer from './user-reducer'
 
 
 var reducers = combineReducers({
-    someState:      someReducers,
+    userState:      userReducer,
 });
 
 export default reducers
