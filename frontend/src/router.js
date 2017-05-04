@@ -3,13 +3,15 @@ import { browserHistory } from 'react-router'
 
 import { Router, Route } from 'react-router'
 
-import WelcomePage from './components/Welcome'
-import AuthPage from './components/Auth/index'
+import WelcomePage      from './components/Welcome'
+import AuthPage         from './components/Auth/index'
+import RegistrationPage from './components/Registration/index'
 
 export default (
   <Router history={browserHistory}>
     <Route path="/" component={ WelcomePage }>
       <Route path="auth" component={ AuthPage }/>
+      <Route path="registration" component={ RegistrationPage }/>
     </Route>
   </Router>
 )
