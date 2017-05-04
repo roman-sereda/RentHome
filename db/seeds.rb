@@ -17,5 +17,6 @@ House.delete_all
                animals_allowed: false,
                wi_fi: true,
                heating: true,
-               conditioner: true)
+               conditioner: true,
+               price_per_day: 13.37)
 end
