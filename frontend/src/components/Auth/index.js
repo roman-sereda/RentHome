@@ -8,8 +8,8 @@ export default class AuthPage extends Component {
     event.preventDefault();
     let user = {};
 
-    user.email      = this.refs.authForm.getEmail()
-    user.password   = this.refs.authForm.getPassword()
+    user.email      = this.refs.authForm.refs.email.value
+    user.password   = this.refs.authForm.refs.password.value
 
     console.log(user)
   }
