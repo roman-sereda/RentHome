@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170503121536) do
+ActiveRecord::Schema.define(version: 20170504054727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,22 @@ ActiveRecord::Schema.define(version: 20170503121536) do
     t.index ["email"], name: "index_hosts_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_hosts_on_reset_password_token", unique: true, using: :btree
     t.index ["uid", "provider"], name: "index_hosts_on_uid_and_provider", unique: true, using: :btree
+  end
+
+  create_table "houses", force: :cascade do |t|
+    t.integer  "floor"
+    t.boolean  "parking"
+    t.boolean  "kitchen"
+    t.boolean  "heating"
+    t.boolean  "conditioner"
+    t.boolean  "animals_allowed"
+    t.boolean  "wi_fi"
+    t.date     "rent_start"
+    t.date     "rent_end"
+    t.integer  "rooms"
+    t.string   "city"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end
