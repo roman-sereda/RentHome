@@ -1,0 +1,14 @@
+.card{
+  border-radius: 5px;
+  background-color: white;
+  text-align: center;
+}
+
+.price-text{
+  color: #76a6f8;
+  font-size: 10;
+}
+
+.secondary{
+  font-size: 14;
+}
