@@ -97,6 +97,8 @@ ActiveRecord::Schema.define(version: 20170504100826) do
     t.string   "city"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.decimal  "price_per_day"
+    t.decimal  "price_per_month"
   end
 
 end

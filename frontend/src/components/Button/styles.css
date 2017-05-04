@@ -1,0 +1,13 @@
+/* button */
+
+.button{
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 10px 5px 10px 5px;
+  width: 140px;
+  background: linear-gradient(to left,#76a6f8, #8b94fd );
+  border-radius: 25px;
+  box-shadow: 0 3px 3px rgba(50,0,100,0.2);
+  margin: 0 15px 0 15px;
+}

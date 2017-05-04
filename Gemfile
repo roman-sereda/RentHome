@@ -13,6 +13,7 @@ gem 'devise_token_auth'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
+gem 'kaminari'
 
 group :development, :test do
   gem 'factory_girl_rails'

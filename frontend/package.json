@@ -10,12 +10,16 @@
   "license": "ISC",
   "dependencies": {
     "immutable": "^3.8.1",
+    "nuka-carousel": "^2.0.4",
     "react": "~15.4.2",
     "react-dom": "^15.4.2",
+    "react-flexbox-grid": "^1.1.2",
     "react-redux": "~5.0.2",
     "react-router": "~3.0.2",
     "react-router-redux": "^4.0.8",
-    "redux": "~3.6.0"
+    "react-slick": "^0.14.11",
+    "redux": "~3.6.0",
+    "slick-carousel": "^1.6.0"
   },
   "devDependencies": {
     "axios": "~0.15.3",
