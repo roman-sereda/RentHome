@@ -36,7 +36,8 @@ class HousesController < BaseController
 
   def house_params
     params.require(:house).permit(:floor, :rent_start, :rent_end, :rooms, :city,
-      :conditioner, :parking, :animals_allowed, :wi_fi, :heating)
+      :conditioner, :parking, :animals_allowed, :wi_fi, :heating, :price_per_day,
+      :price_per_month)
   end
 
   def filters

@@ -11,5 +11,7 @@ FactoryGirl.define do
     rent_end "2017-05-04"
     rooms 1
     city "MyString"
+    price_per_day 13.37
+    price_per_month 148.8
   end
 end

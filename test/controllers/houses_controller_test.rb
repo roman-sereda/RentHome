@@ -26,7 +26,6 @@ class HousesControllerTest < ActionController::TestCase
   test "should return house errors if requesting create with invalid data" do
     post :create, params: { house: attributes_for(:house, floor: -1) }
     assert_response 422
-
     jdata = JSON.parse response.body
     errors = {"floor"=>["must be greater than or equal to 0"]}
     assert_equal errors, jdata["errors"]
