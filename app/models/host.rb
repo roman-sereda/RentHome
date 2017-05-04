@@ -4,4 +4,7 @@ class Host < ActiveRecord::Base
           :recoverable, :rememberable, :trackable, :validatable,
           :confirmable, :omniauthable
   include DeviseTokenAuth::Concerns::User
+
+  validates :name, presence: true
+  validates :surname, presence: true
 end
