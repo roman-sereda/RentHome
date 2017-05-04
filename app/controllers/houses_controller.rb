@@ -2,6 +2,10 @@ class HousesController < BaseController
   before_action :set_house, only: [:show, :update, :destroy]
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_house
 
+  def search
+    render json: { houses: House.where(filters).page(params[:page]) }
+  end
+
   def show
     render json: { house: @house }
   end
@@ -33,6 +37,11 @@ class HousesController < BaseController
   def house_params
     params.require(:house).permit(:floor, :rent_start, :rent_end, :rooms, :city,
       :conditioner, :parking, :animals_allowed, :wi_fi, :heating)
+  end
+
+  def filters
+    params.require(:filters).permit(:floor, :rent_start, :rent_end, :rooms, :city,
+      :conditioner, :parking, :animals_allowed, :wi_fi, :heating) if params[:filters]
   end
 
   def set_house
