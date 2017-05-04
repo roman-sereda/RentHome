@@ -3,9 +3,9 @@ import { browserHistory } from 'react-router'
 
 import { Router, Route } from 'react-router'
 
-import WelcomePage from './components/WelcomePage'
+import WelcomePage from './components/Welcome'
 
-import AuthPage from './components/AuthPage'
+import AuthPage from './components/Auth/index'
 
 
 export default (
