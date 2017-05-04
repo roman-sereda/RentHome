@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   as :guest do
     # Define routes for Guest within this block.
   end
-  
+
+  resource :houses, only: [:show, :create, :update, :destroy]
+
 end
