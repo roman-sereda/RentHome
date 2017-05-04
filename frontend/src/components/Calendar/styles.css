@@ -1,0 +1,12 @@
+.react-datepicker {
+  border-radius: 16px !important;
+}
+
+.react-datepicker__day--selected {
+  border-radius: 25px !important;
+  background-color: pink !important;
+}
+
+.react-datepicker__current-month {
+  color: #76a6f8 !important;
+}

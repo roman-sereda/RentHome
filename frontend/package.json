@@ -4,13 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack",
+    "build:watch": "webpack --watch"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "immutable": "^3.8.1",
+    "moment": "^2.18.1",
     "react": "~15.4.2",
+    "react-datepicker": "^0.46.0",
     "react-dom": "^15.4.2",
     "react-flexbox-grid": "^1.1.2",
     "react-redux": "~5.0.2",
