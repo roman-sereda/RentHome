@@ -1,13 +1,42 @@
+/* card */
+
 .card{
   padding: 10px 5px 20px 5px;
-  margin: 10px;
   border-radius: 5px;
   background-color: white;
   text-align: center;
+  box-shadow: 0 0 60px rgba(121,162,248,0.2);
+  height: 460px;
+  margin: 10px;
+  padding: 5px 5px 5px 5px;
+}
+
+.card:hover{
+  box-shadow: 0 0 60px rgba(121,162,248,0.4);
+}
+
+/* img-txt*/
+
+.img-txt{
+  padding: 5px 5px 10px 15px;
+}
+
+.card-image{
+  height: 250px;
+}
+
+.card-image-wrapper{
+  height: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.description{
+  font-size: 20px;
 }
 
 .price-text{
-  color: #76a6f8;
   font-size: 28px;
   font-weight: 900;
 }
@@ -16,31 +45,62 @@
   font-size: 16px;
 }
 
-.card-image{
-  width: auto;
-  height: 250px;
-}
-
-.card-image-wrapper{
-  overflow: hidden;
-  text-align: center;
-  margin: 10px 0 0 10px;
-}
-
-.description{
-  color: #9ca6b8;
-  font-size: 20px;
-  padding: 5px 15px 0 15px;
-}
-
 .town{
-  margin-top: 10px;
+  margin: 10px 0 10px 0;
   color: #ffa8a8;
 }
 
 .price{
+  margin-top: 15px;
   margin-bottom: 25px;
 }
 
-.card-image-wrapper{
+/* img */
+
+.img{
+  height: 300px !important;
+}
+
+.img-card-image-wrapper{
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  border-radius: 5px;
+}
+
+/* txt */
+
+.txt{
+  margin-left: 75px;
+  height: 300px !important;
+  padding:  15px 0 15px 0;
+}
+
+.txt-button{
+
+}
+
+.txt-title{
+  padding: 5px 20px 15px 20px;
+  color: black !important;
+  font-size: 19px;
+}
+
+.txt-text{
+  text-align: left;
+  padding: 20px 30px 60px 60px !important;
+  font-size: 17px;
+}
+
+
+
+
+
+
+
+
+
+
+.padding{
+  padding: 5px 5px 5px 5px !important;
 }
