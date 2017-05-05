@@ -5,3 +5,15 @@ body{
   font-size: 14px;
   background-color: rgb(245,245,245);
 }
+
+.white-text{
+  color: white;
+}
+
+.blue-text{
+  color: #7aa2f8;
+}
+
+.black-text{
+  color: #9ca6b8;
+}
