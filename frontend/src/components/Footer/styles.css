@@ -37,8 +37,6 @@
 }
 
 .footer-image{
-  width: 125px;
-  height: 75px;
 }
 
 .footer-text-block{
@@ -54,5 +52,13 @@
 }
 
 .feedback-buttons{
-  padding-top: 35px;
+  padding-top: 25px;
+  display: table;
+}
+
+.feedback-icon{
+  padding: 0 7px 0 7px;
+  max-width: 20px;
+  max-height: 20px;
+  vertical-align: middle;
 }
