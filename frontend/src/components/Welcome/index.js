@@ -6,6 +6,7 @@ import Footer from '../Footer'
 import Header from '../Header'
 import Card from '../Card'
 import Carousel from '../Carousel'
+import SearchField from '../SearchField'
 
 const col_conf = {
   lg: 4
@@ -17,6 +18,7 @@ export default class WelcomePage extends Component{
       <span>
         <Header />
         <Carousel />
+        <SearchField />
         <Grid>
           <Row>
             <Col {...col_conf} ><Card /></Col>

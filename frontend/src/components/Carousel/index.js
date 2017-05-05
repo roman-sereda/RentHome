@@ -14,17 +14,19 @@ const carousel_conf = {
 export default class Carousel extends Component{
   render(){
     return(
-      <Slider {...carousel_conf} >
-        <span className = 'carousel-image-wrapper'>
-          <img className = 'carousel-image' src = 'https://static1.comicvine.com/uploads/original/11128/111283068/5260519-franku+%28kys%29.jpg' className = 'carousel-image' />
-        </span>
-        <span className = 'carousel-image-wrapper'>
-          <img className = 'carousel-image' src = 'https://static1.comicvine.com/uploads/original/11128/111283068/5260519-franku+%28kys%29.jpg' className = 'carousel-image' />
-        </span>
-        <span className = 'carousel-image-wrapper'>
-          <img className = 'carousel-image' src = 'https://static1.comicvine.com/uploads/original/11128/111283068/5260519-franku+%28kys%29.jpg' className = 'carousel-image' />
-        </span>
-      </Slider>
+      <span className = 'carousel-wrapper'>
+        <Slider {...carousel_conf} >
+          <span className = 'carousel-image-wrapper'>
+            <img className = 'carousel-image' src = 'https://static1.comicvine.com/uploads/original/11128/111283068/5260519-franku+%28kys%29.jpg' className = 'carousel-image' />
+          </span>
+          <span className = 'carousel-image-wrapper'>
+            <img className = 'carousel-image' src = 'https://static1.comicvine.com/uploads/original/11128/111283068/5260519-franku+%28kys%29.jpg' className = 'carousel-image' />
+          </span>
+          <span className = 'carousel-image-wrapper'>
+            <img className = 'carousel-image' src = 'https://static1.comicvine.com/uploads/original/11128/111283068/5260519-franku+%28kys%29.jpg' className = 'carousel-image' />
+          </span>
+        </Slider>
+      </span>
     )
   }
 }
