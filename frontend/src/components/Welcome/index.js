@@ -20,6 +20,7 @@ export default class WelcomePage extends Component{
         <Header />
         <Carousel />
         <SearchField />
+        <div className = 'middle-wave'></div>
         <Grid>
           <Row>
             <Col {...col_conf} ><Card card_type = 'img-txt' /></Col>
