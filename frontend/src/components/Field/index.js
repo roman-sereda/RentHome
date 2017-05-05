@@ -13,7 +13,7 @@ const input_conf = {
   placeholder: 'Введіть назву міста'
 }
 
-export default class SearchField extends Component{
+export default class Field extends Component{
   render(){
     return(
       <Row>

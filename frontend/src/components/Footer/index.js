@@ -16,13 +16,23 @@ const data = [
   ['Карта сайту', '/#']],
 ]
 
+const feedback = [
+  'facebook',
+  'vk',
+  'instagram',
+  'google',
+  'printerest',
+  'viber',
+  'skype'
+]
+
 export default class Footer extends Component{
   render(){
     return(
       <div className = 'footer full-width'>
         <div className = 'footer-top full-width'>
           <span className = 'footer-in-wrapper'>
-            <img className = 'footer-image' />
+            <img className = 'footer-image' src = '/footer-logo.png' />
           </span>
           <span className = 'footer-in-wrapper'>
             {data.map((col) => {
@@ -37,8 +47,14 @@ export default class Footer extends Component{
               )
             })}
           </span>
-          <span className = 'footer-in-wrapper feedback-buttons' >
-            Feedback Buttons
+          <span className = 'footer-in-wrapper' >
+            <span className = 'feedback-buttons'>
+              { feedback.map((label) => {
+                return(
+                  <img src = { '/' + label + '.png' } className = 'feedback-icon' />
+                )
+              })}
+            </span>
           </span>
         </div>
         <div className = 'footer-bottom full-width'>
