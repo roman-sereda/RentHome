@@ -53,6 +53,15 @@ export default class CalendarForm extends Component{
             <div className="bodyCalendar">
               <table>
                 <tbody>
+                  <tr>
+                    <td>Пн</td>
+                    <td>Вт</td>
+                    <td>Ср</td>
+                    <td>Чт</td>
+                    <td>Пт</td>
+                    <td>Сб</td>
+                    <td>Нд</td>
+                  </tr>
                   {this.Calendar}
                 </tbody>
               </table>
