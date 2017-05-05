@@ -60,4 +60,53 @@ RSpec.describe GuestsController, type: :controller do
       it { should respond_with 422 }
     end
   end
+
+  describe 'PUT/PATCH #update' do 
+    context 'when is updated successfully' do
+      before(:each) do
+        @guest = FactoryGirl.create(:guest)
+        patch :update,
+          params: { id: @guest.id, 
+                    guest: { email: 'newemail@example.com' } }, format: :json
+      end
+
+      it 'renders the json representation for the updated guest' do
+        guest_response = JSON.parse(response.body, symbolize_names: true)
+        expect(response).to be_success
+        expect(guest_response[:guest][:email]).to eql 'newemail@example.com' 
+      end
+
+      it { should respond_with 200 }
+    end    
+
+    context 'when is not updated' do
+      before(:each) do
+        @guest = FactoryGirl.create(:guest)
+        patch :update,
+          params: { id: @guest.id, 
+                    guest: { email: 'bademailexample.com' } }, format: :json
+      end
+
+      it 'renders an errors json' do
+        guest_response = JSON.parse(response.body, symbolize_names: true)
+        expect(guest_response).to have_key(:errors) 
+      end
+
+      it 'renders errors "Email is not an email"' do
+        guest_response = JSON.parse(response.body, symbolize_names: true)
+        expect(guest_response[:errors][:email]).to include "is not an email"
+      end
+
+      it { should respond_with 422 }
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    before(:each) do
+      @guest = FactoryGirl.create(:guest)
+      delete :destroy, params: { id: @guest.id }, format: :json
+    end
+
+    it { should respond_with 204 }
+  end
 end

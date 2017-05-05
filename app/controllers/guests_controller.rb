@@ -17,7 +17,7 @@ class GuestsController < BaseController
 
   def update
     if @guest.update_attributes(guest_params)
-      render json: { house: @guest }, status: 200
+      render json: { guest: @guest }, status: 200
     else
       render json: { errors: @guest.errors }, status: 422
     end
