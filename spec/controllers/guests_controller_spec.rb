@@ -8,7 +8,7 @@ RSpec.describe GuestsController, type: :controller do
     end 
 
     it "return information about guest" do
-      guest_response = JSON.parse(response.body, symbolize_names: true)
+      guest_response = json_response
       expect(response).to be_success
       expect(guest_response[:guest][:email]).to eql @guest.email
     end
@@ -24,7 +24,7 @@ RSpec.describe GuestsController, type: :controller do
       end
 
       it "renders json representation for the guest record just created" do
-        guest_response = JSON.parse(response.body, symbolize_names: true)
+        guest_response = json_response
         expect(guest_response[:guest][:email]).to eql @guest_attributes[:email]
       end
       
@@ -38,22 +38,22 @@ RSpec.describe GuestsController, type: :controller do
       end 
 
       it "renders an errors in json" do
-        guest_response = JSON.parse(response.body, symbolize_names: true)
+        guest_response = json_response
         expect(guest_response).to have_key(:errors)       
       end
 
       it "renders errors 'Surname can't be blank'" do
-        guest_response = JSON.parse(response.body, symbolize_names: true)
+        guest_response = json_response
         expect(guest_response[:errors][:surname]).to include "can't be blank"
       end
 
       it "renders errors 'Password can't be blank'" do
-        guest_response = JSON.parse(response.body, symbolize_names: true)
+        guest_response = json_response
         expect(guest_response[:errors][:password]).to include "can't be blank"
       end
 
       it "renders errors 'Email is not an email'" do 
-        guest_response = JSON.parse(response.body, symbolize_names: true)
+        guest_response = json_response
         expect(guest_response[:errors][:email]).to include "is not an email"
       end
 
@@ -71,7 +71,7 @@ RSpec.describe GuestsController, type: :controller do
       end
 
       it 'renders the json representation for the updated guest' do
-        guest_response = JSON.parse(response.body, symbolize_names: true)
+        guest_response = json_response
         expect(response).to be_success
         expect(guest_response[:guest][:email]).to eql 'newemail@example.com' 
       end
@@ -88,12 +88,12 @@ RSpec.describe GuestsController, type: :controller do
       end
 
       it 'renders an errors json' do
-        guest_response = JSON.parse(response.body, symbolize_names: true)
+        guest_response = json_response
         expect(guest_response).to have_key(:errors) 
       end
 
       it 'renders errors "Email is not an email"' do
-        guest_response = JSON.parse(response.body, symbolize_names: true)
+        guest_response = json_response
         expect(guest_response[:errors][:email]).to include "is not an email"
       end
 
