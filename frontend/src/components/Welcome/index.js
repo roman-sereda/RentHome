@@ -7,7 +7,7 @@ import Footer from '../Footer'
 import Header from '../Header'
 import Card from '../Card'
 import Carousel from '../Carousel'
-import SearchField from '../SearchField'
+import Field from '../Field'
 
 const col_conf = {
   lg: 4
@@ -19,7 +19,7 @@ export default class WelcomePage extends Component{
       <span>
         <Header />
         <Carousel />
-        <SearchField />
+        <Field />
         <div className = 'middle-wave'></div>
         <Grid>
           <Row>
