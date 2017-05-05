@@ -18,7 +18,10 @@ export default class CalendarForm extends Component{
   }
 
   renderCalendar() {
-    let numberDay = 0
+    var currentDate = new Date();
+    let startMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getUTCDay()
+
+    let numberDay = 31 - startMonth
     this.day = []
     this.week = []
     this.Calendar = []
