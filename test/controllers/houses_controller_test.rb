@@ -93,4 +93,15 @@ class HousesControllerTest < ActionController::TestCase
     jdata = JSON.parse response.body
     assert_equal 3, jdata["houses"].count
   end
+
+  test "should count unique ip that visits house show page" do
+    house = create(:house)
+    assert_equal 0,
+      house.impressionist_count(:filter=>:ip_address)
+
+    get :show, params: { id: house.id }
+    get :show, params: { id: house.id }
+    assert_equal 1,
+      house.impressionist_count(:filter=>:ip_address)
+  end
 end

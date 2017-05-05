@@ -14,6 +14,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'kaminari'
+gem 'impressionist'
 
 group :development, :test do
   gem 'factory_girl_rails'
