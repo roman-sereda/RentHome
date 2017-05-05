@@ -5,6 +5,20 @@ import styles from './styles.css'
 export default class CalendarForm extends Component{
 
   componentWillMount(){
+    this.nameOfMonth = {}
+    this.nameOfMonth[0] = "Січень"
+    this.nameOfMonth[1] = "Лютий"
+    this.nameOfMonth[2] = "Березень"
+    this.nameOfMonth[3] = "Квітень"
+    this.nameOfMonth[4] = "Травень"
+    this.nameOfMonth[5] = "Червень"
+    this.nameOfMonth[6] = "Липень"
+    this.nameOfMonth[7] = "Серпень"
+    this.nameOfMonth[8] = "Вересень"
+    this.nameOfMonth[9] = "Жовтень"
+    this.nameOfMonth[10] = "Листопад"
+    this.nameOfMonth[11] = "Грудень"
+
     this.renderCalendar()
   }
 
@@ -48,7 +62,7 @@ export default class CalendarForm extends Component{
           <button onClick={() => this.openCalendar()} className="dropbtn">Calendar</button>
           <div id='myDropdown' className='dropdown-content' ref='content'>
             <div className="monthCalendar">
-              <h2> Month </h2>
+              <h2> {this.nameOfMonth[new Date().getMonth()]} </h2>
             </div>
             <div className="bodyCalendar">
               <table>
