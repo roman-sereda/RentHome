@@ -26,3 +26,13 @@
   left: 10% !important;
   z-index: 9999 !important;
 }
+
+.wave1{
+  margin-top: -20px;
+  width: 100%;
+  height: 500px;
+  position: absolute;
+  z-index: -1;
+  background-image: url('/wave1.png');
+  background-repeat: no-repeat;
+}

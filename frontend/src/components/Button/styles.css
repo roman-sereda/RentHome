@@ -10,4 +10,11 @@
   border-radius: 25px;
   box-shadow: 0 3px 3px rgba(50,0,100,0.2);
   margin: 0 15px 0 15px;
+  transition: all 0.1s ease-out;
+}
+
+.button:hover{
+  background: linear-gradient(to left, #8b94fd, #76a6f8 );
+  box-shadow: 0 0px 10px rgba(50,0,100,0.5);
+  transition: all 0.1s ease-in;
 }

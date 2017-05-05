@@ -4,10 +4,14 @@
   border-radius: 5px;
   background-color: white;
   text-align: center;
+  box-shadow: 0 0 60px rgba(121,162,248,0.2);
+}
+
+.card:hover{
+  box-shadow: 0 0 60px rgba(121,162,248,0.4);
 }
 
 .price-text{
-  color: #76a6f8;
   font-size: 28px;
   font-weight: 900;
 }
@@ -28,7 +32,6 @@
 }
 
 .description{
-  color: #9ca6b8;
   font-size: 20px;
   padding: 5px 15px 0 15px;
 }
@@ -39,8 +42,6 @@
 }
 
 .price{
+  margin-top: 15px;
   margin-bottom: 25px;
-}
-
-.card-image-wrapper{
 }

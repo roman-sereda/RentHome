@@ -26,6 +26,7 @@ export default class Carousel extends Component{
             <img className = 'carousel-image' src = 'https://static1.comicvine.com/uploads/original/11128/111283068/5260519-franku+%28kys%29.jpg' className = 'carousel-image' />
           </span>
         </Slider>
+        <div className = 'wave1'></div>
       </span>
     )
   }
