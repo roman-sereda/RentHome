@@ -15,12 +15,12 @@ export default class Header extends Component{
     return(
       <div className = 'header full-width'>
         <span className = 'header-image-wrapper cell'>
-          <img className = 'header-image' />
+          <img src = 'header-logo.png' className = 'header-image' />
         </span>
         <span className = 'header-links-wrapper cell' >
           { links.map((link, index) => {
             return(
-              <span key = { link[0]} >
+              <span className = 'blue-text' key = { link[0]} >
                 { index == 0 ? null : <span className = 'separator' >|</span>}
                 <span>{ link[0] }</span>
               </span>

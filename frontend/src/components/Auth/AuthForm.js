@@ -3,14 +3,6 @@ import React, { Component } from 'react'
 
 export default class AuthPage extends Component {
 
-  getEmail() {
-    return this.refs.email.value;
-  }
-
-  getPassword() {
-    return this.refs.password.value;
-  }
-
   render() {
     return (
       <div>

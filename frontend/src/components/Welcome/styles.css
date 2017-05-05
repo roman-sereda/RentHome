@@ -1,0 +1,15 @@
+.show-all-button{
+  padding: 0 0 25px 0;
+  width: 100%;
+  text-align: center;
+}
+
+.middle-wave{
+  margin-top: 700px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+  background-image: url('/wave2.png');
+  background-repeat: no-repeat;
+}

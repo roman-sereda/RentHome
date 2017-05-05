@@ -1,0 +1,24 @@
+body{
+  padding: 0;
+  margin: 0;
+  font-family: Arial;
+  font-size: 14px;
+  background-color: white;
+}
+
+.white-text{
+  color: white;
+}
+
+.blue-text{
+  color: #7aa2f8;
+}
+
+.black-text{
+  color: #9ca6b8;
+}
+
+::-webkit-input-placeholder{ color: #7aa2f8; }
+:-moz-placeholder{ color: #7aa2f8; }
+::-moz-placeholder{ color: #7aa2f8; }
+::-ms-input-placeholder{ color: #7aa2f8; }
