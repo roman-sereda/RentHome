@@ -7,7 +7,7 @@ class GuestsController < BaseController
   end
 
   def create
-    guest  = Guest.new(guest_params)
+    guest = Guest.new(guest_params)
     if guest.save
       render json: { guest: guest }, status: 201
     else

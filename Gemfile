@@ -16,6 +16,8 @@ gem 'omniauth-google-oauth2'
 gem 'kaminari'
 
 group :development, :test do
+  gem 'rspec-rails', '~> 3.5'
+  gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'ffaker'
   gem 'database_cleaner'
