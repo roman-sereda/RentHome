@@ -7,6 +7,7 @@ class HousesController < BaseController
   end
 
   def show
+    impressionist(@house)
     render json: { house: @house }
   end
 
