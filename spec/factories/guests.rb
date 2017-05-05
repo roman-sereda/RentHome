@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :guest do
-    name      "guest name"
-    surname   "guest surname"
+    name      "guestName"
+    surname   "guestSurname"
     email     "guest@example.com"
     password  "password"
     city      "Zdolbuniv"

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :host do
-    name      "Host name"
+    name      "host name"
     surname   "host surname"
     email     "host@example.com"
     password  "password"
