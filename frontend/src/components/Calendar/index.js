@@ -47,13 +47,17 @@ class Calendar extends Component{
   }
 
   changeMonth({numberDay, state, countDay}){
-
     this.Day = numberDay
 
     if (state == "prev" || Number(numberDay) > Number(countDay)){
       this.Month -= 1
+
+      if(this.Month < 0){
+        this.Month = 11
+        this.Year -= 1
+      }
     }
-    else if (state == "next" || Number(numberDay + this.startMonth) < Number(countDay)){
+    else if (state == "next" || (Number(numberDay) + Number(this.startMonth)) < Number(countDay)){
       this.Month += 1
 
       if (this.Month > 11) {
@@ -71,6 +75,14 @@ class Calendar extends Component{
       this.setCurrentDate()
 
       this.updateCalendar()
+    }
+  }
+
+  setCollor(numberDay, thisMonthEnd) {
+    if (this.currentDate > new Date(this.Year, this.Month, numberDay) && thisMonthEnd == false){
+      return("red")
+    }else{
+      return("green")
     }
   }
 
@@ -105,6 +117,8 @@ class Calendar extends Component{
           thisMonthEnd = true
         }
 
+
+
         if (week == 5 && day == 7 && thisMonthEnd == false){
           countWeek = 6
         }
@@ -112,6 +126,7 @@ class Calendar extends Component{
         this.day.push(<td key={'dayCalendar ' + countDay}
                           data-NumberDay={numberDay}
                           data-countDay={countDay}
+                          style={{color: this.setCollor(numberDay, thisMonthEnd)}}
                           onClick={(e) => this.changeMonth({numberDay: e.target.getAttribute("data-NumberDay"),
                                                             countDay:  e.target.getAttribute("data-countDay")})}
                       >{numberDay}</td>)
