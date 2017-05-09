@@ -23,13 +23,21 @@ class Calendar extends Component{
     "Жовтень", "Листопад", "Грудень"]
 
     this.currentDate = new Date()
-    this.currentMonth = this.currentDate.getMonth()
+    this.currentDate.setHours(0, 0, 0, 0);
 
+    this.setCurrentDate()
+
+    this.updateCalendar()
+  }
+
+  setCurrentDate(){
     this.Year = this.currentDate.getFullYear()
     this.Month = this.currentDate.getMonth()
-    this.Day = this.currentDate.getDay()
+    this.Day = this.currentDate.getDate()
+  }
 
-    store.dispatch(setNameOfMonth(this.nameOfMonth[this.currentDate.getMonth()]))
+  updateCalendar(){
+    store.dispatch(setNameOfMonth(this.nameOfMonth[this.Month]))
     store.dispatch(setDate(this.templateDate(this.Day, this.Month, this.Year)))
     store.dispatch(setCalendar(this.renderCalendar()))
   }
@@ -38,90 +46,75 @@ class Calendar extends Component{
     return(day + '-' + (month + 1) + '-' + year)
   }
 
-  changeDate(Month){
-    if (Month < 0){
-      this.Month = 11
-      this.Year -= 1
-    }else if (Month > 11) {
-      this.Month = 0
-      this.Year += 1
-    }
-  }
+  changeMonth({numberDay, state, countDay}){
 
-  changeMonth(state){
-    this.Day = 1
+    this.Day = numberDay
 
-    if (state == 'next'){
-      this.Month += 1
-    }else {
+    if (state == "prev" || Number(numberDay) > Number(countDay)){
       this.Month -= 1
     }
-
-    this.changeDate(this.Month)
-
-    store.dispatch(setNameOfMonth(this.nameOfMonth[this.Month]))
-    store.dispatch(setDate(this.templateDate(this.Day, this.Month, this.Year)))
-    store.dispatch(setCalendar(this.renderCalendar()))
-  }
-
-
-  IsThisAnotherMonth(numberDay, countDay){
-
-    if (numberDay > countDay){
-      this.Month -= 1
-      this.Day = numberDay
-
-      this.changeDate(this.Month)
-
-      store.dispatch(setNameOfMonth(this.nameOfMonth[this.Month]))
-      store.dispatch(setDate(this.templateDate(this.Day, this.Month, this.Year)))
-      store.dispatch(setCalendar(this.renderCalendar()))
-    }
-    else if (numberDay < countDay){
+    else if (state == "next" || Number(numberDay + this.startMonth) < Number(countDay)){
       this.Month += 1
-      this.Day = numberDay
 
-      this.changeDate(this.Month)
-
-      store.dispatch(setNameOfMonth(this.nameOfMonth[this.Month]))
-      store.dispatch(setDate(this.templateDate(this.Day, this.Month, this.Year)))
-      store.dispatch(setCalendar(this.renderCalendar()))
+      if (this.Month > 11) {
+        this.Month = 0
+        this.Year += 1
+      }
     }
-    else {
-      this.Day = numberDay
 
-      store.dispatch(setDate(this.templateDate(this.Day, this.Month, this.Year)))
+    let requestedDate = new Date(this.Year, this.Month, this.Day)
+
+    if (requestedDate >= this.currentDate){
+      this.updateCalendar()
+    }
+    else{
+      this.setCurrentDate()
+
+      this.updateCalendar()
     }
   }
 
   renderCalendar() {
 
    let  startMonth = new Date(this.Year, this.Month, 1).getUTCDay(),
-        numberDay = 31 - startMonth,
         countDay = 0,
-        dayCountInMonth = new Date(this.Year, this.Month + 1, 0).getDate()
+        countWeek = 5,
+        dayCountInThisMonth = new Date(this.Year, this.Month + 1, 0).getDate(),
+        dayCountInPrevMonth = new Date(this.Year, this.Month, 0).getDate(),
+        numberDay = dayCountInPrevMonth - startMonth,
+        prevMonthEnd = false,
+        thisMonthEnd = false
 
     this.day = []
     this.week = []
+    this.startMonth = startMonth
 
-    for(let week = 1; week < 6; week++){
-      for(let day = 1; day < 8; day++){
+    for(let week = 1; week <= countWeek; week++){
+      for(let day = 1; day <= 7; day++){
 
         numberDay++
 
-        if (numberDay > 31){
+        countDay++
+
+        if (numberDay > dayCountInPrevMonth && prevMonthEnd == false){
           numberDay = 1
+          prevMonthEnd = true
+        }
+        else if (numberDay > dayCountInThisMonth && prevMonthEnd == true){
+          numberDay = 1
+          thisMonthEnd = true
         }
 
-        countDay++
+        if (week == 5 && day == 7 && thisMonthEnd == false){
+          countWeek = 6
+        }
 
         this.day.push(<td key={'dayCalendar ' + countDay}
                           data-NumberDay={numberDay}
                           data-countDay={countDay}
-                          onClick={(e) => {
-                            this.IsThisAnotherMonth(e.target.getAttribute("data-NumberDay"), e.target.getAttribute("data-countDay"))
-                          }
-                        }>{numberDay}</td>)
+                          onClick={(e) => this.changeMonth({numberDay: e.target.getAttribute("data-NumberDay"),
+                                                            countDay:  e.target.getAttribute("data-countDay")})}
+                      >{numberDay}</td>)
       }
       this.week.push(<tr key={'weekCalendar ' + week}>{this.day}</tr>)
       this.day = []

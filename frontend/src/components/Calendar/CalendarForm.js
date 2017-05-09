@@ -27,9 +27,9 @@ export default class CalendarForm extends Component{
             <table>
               <tbody>
                 <tr>
-                  <td onClick={() => this.props.changeMonth("prev")}>&#11013;</td>
+                  <td onClick={() => this.props.changeMonth({numberDay: 1, state: "prev"})}>&#11013;</td>
                   <td><h2> {this.props.NameOfMonth} </h2></td>
-                  <td onClick={() => this.props.changeMonth("next")}>&#10145;</td>
+                  <td onClick={() => this.props.changeMonth({numberDay: 1, state: "next"})}>&#10145;</td>
                 </tr>
               </tbody>
             </table>
