@@ -4,6 +4,7 @@ import styles from './styles.css'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 
 import Button from '../Button'
+import Calendar from '../Calendar'
 
 const search_bar_conf = {
   lg:8,  md: 10, sm: 12, xs: 12
@@ -21,6 +22,8 @@ export default class Field extends Component{
         <Col {...search_bar_conf} className = 'search-bar'>
           <span >
             <input {...input_conf} className = 'search-bar-input' />
+            <span className = 'search-calendar'><Calendar /></span>
+            <span className = 'search-calendar'><Calendar /></span>
             <Button label = 'Шукати' />
           </span>
         </Col>

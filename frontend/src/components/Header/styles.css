@@ -19,7 +19,6 @@
 .cell{
   display: table-cell;
   vertical-align: middle;
-  border: 1px solid red;
 }
 
 .header-links-wrapper{

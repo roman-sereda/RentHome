@@ -18,6 +18,20 @@ body{
   color: #9ca6b8;
 }
 
+.red-text{
+  color: red;
+}
+
+.text-left{
+  width: 100%;
+  text-align: left;
+}
+
+.text-right{
+  width: 100%;
+  text-align: right;
+}
+
 ::-webkit-input-placeholder{ color: #7aa2f8; }
 :-moz-placeholder{ color: #7aa2f8; }
 ::-moz-placeholder{ color: #7aa2f8; }
