@@ -3,7 +3,7 @@ import * as types from '../actions/action-types';
 
 const initialState = {
   nameOfMonth: [null],
-  date: [null],
+  date: null,
   calendarBody: [null],
   selectedDate: [null]
 }
