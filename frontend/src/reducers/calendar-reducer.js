@@ -4,7 +4,8 @@ import * as types from '../actions/action-types';
 const initialState = {
   nameOfMonth: [null],
   date: [null],
-  calendarBody: [null]
+  calendarBody: [null],
+  selectedDate: [null]
 }
 
 const user = function(state = initialState, action) {
@@ -16,6 +17,9 @@ const user = function(state = initialState, action) {
 
     case types.SET_DATE:
       return Object.assign({}, state, { date: action.date });
+
+    case types.SET_SELECTED_DATE:
+      return Object.assign({}, state, { selectedDate: action.selectedDate });
 
     case types.SET_CALENDAR_BODY:
       return Object.assign({}, state, { calendarBody: action.calendar });

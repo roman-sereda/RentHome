@@ -45,7 +45,7 @@ export default class CalendarForm extends Component{
                     <td>Чт</td>
                     <td>Пт</td>
                     <td>Сб</td>
-                    <td>Нд</td>
+                    <td style={{color: '#c70041'}}>Нд</td>
                   </tr>
                   {this.props.Calendar}
                 </tbody>

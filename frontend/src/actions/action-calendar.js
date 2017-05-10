@@ -21,6 +21,13 @@ export function setCalendar(calendar) {
   }
 }
 
+export function setSelectedDate(selectedDate) {
+  return {
+    type: types.SET_SELECTED_DATE,
+    selectedDate
+  }
+}
+
 export function resetAllCalendarData() {
   return {
     type: types.RESET_ALL_CALENDAR_DATA,
