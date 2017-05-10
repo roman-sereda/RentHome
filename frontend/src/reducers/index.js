@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux'
 
-import userReducer from './user-reducer'
+import user from './user-reducer'
+import calendar from './calendar-reducer'
 
 
 var reducers = combineReducers({
-    userState:      userReducer,
+    user,
+    calendar
 });
 
 export default reducers

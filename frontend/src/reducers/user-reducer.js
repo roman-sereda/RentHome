@@ -1,18 +1,16 @@
 import * as types from '../actions/action-types';
 
 
-const initialState = {
-  user: [null]
-};
+const initialState = {}
 
-const userReducer = function(state = initialState, action) {
+const user = function(state = initialState, action) {
 
   switch(action.type) {
 
     case types.SOME_ACTION_TYPE:
-      return Object.assign({}, state, { user: action.user });
+      return Object.assign({}, state, action.user);
     }
   return state;
 }
 
-export default userReducer;
+export default user;
