@@ -3,9 +3,10 @@
 .search-bar{
   border-radius: 12px;
   background-color: white;
-  margin: -130px 0 0 0;
+  margin: -130px 15px 10px 15px;
   max-height: 100px;
   position: relative;
+  box-shadow: 0 0 60px rgba(121,162,248,0.2);
   z-index: 99999999999999999;
   padding: 30px 40px 10px 40px;
 }
