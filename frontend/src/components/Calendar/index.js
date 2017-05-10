@@ -6,12 +6,6 @@ import CalendarForm from './CalendarForm'
 
 import { connect }  from 'react-redux';
 
-import { setDate,
-         setCalendar,
-         setNameOfMonth,
-         setSelectedDate } from '../../actions/action-calendar';
-
-
 export default class Calendar extends Component{
 
   constructor() {
@@ -123,7 +117,8 @@ export default class Calendar extends Component{
         numberDay = dayCountInPrevMonth - this.startMonth,
         numberMonth = this.Month-1 ,
         prevMonthEnd = false,
-        thisMonthEnd = false
+        thisMonthEnd = false,
+        unavailableDay = true
 
     this.tdDay = []
     this.trWeek = []
@@ -147,6 +142,10 @@ export default class Calendar extends Component{
           thisMonthEnd = true
         }
 
+        if (this.currentDate < new Date(this.Year, this.Month, numberDay)){
+          unavailableDay = false
+        }
+
         if (week == 5 && day == 7 && thisMonthEnd == false){
           countWeek = 6
         }
@@ -154,6 +153,7 @@ export default class Calendar extends Component{
         this.tdDay.push(<span className = 'calendar-cell'><span className = 'day-wrapper' key={'dayCalendar ' + countDay}
                           data-NumberDay={numberDay}
                           data-countDay={countDay}
+                          data-unavailableDay={unavailableDay}
                           id={this.templateDate(numberDay, numberMonth, this.Year)}
 
                           style={{ color: this.setColor(numberDay, thisMonthEnd, selectedDate, this.templateDate(numberDay, numberMonth, this.Year)), borderRadius: '25px',
@@ -161,7 +161,7 @@ export default class Calendar extends Component{
                                 }}
 
                           onClick={(e) => {
-                            if (e.target.getAttribute("style") !== 'color: gray;') {
+                            if (e.target.getAttribute("data-unavailableDay") !== 'true') {
 
                               this.changeMonth({numberDay: e.target.getAttribute("data-NumberDay"),
                                                 countDay:  e.target.getAttribute("data-countDay")})
