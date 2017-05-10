@@ -7,8 +7,8 @@ export default class Auth extends Component {
 
   render() {
     return (
-      <div>
-        <SignUp />
+      <div className = 'modal-window-show' >
+        { this.props.children }
       </div>
     );
   }
