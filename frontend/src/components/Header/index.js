@@ -28,7 +28,7 @@ export default class Header extends Component{
           })}
         </span>
         <span className = 'auth-buttons cell'>
-          <Button label = 'Зареєструватися' />
+          <span className = 'auth-button'><Button label = 'Зареєструватися' /></span>
           <Button label = 'Увійти' />
         </span>
       </div>

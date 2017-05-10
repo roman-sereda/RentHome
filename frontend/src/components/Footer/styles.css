@@ -24,8 +24,7 @@
 }
 
 .white-text{
-  color: white;
-  line-height: 0.2em;
+  line-height: 100%;
 }
 
 .footer-text{
@@ -45,15 +44,12 @@
   display: inline-block;
 }
 
-.footer-in-wrapper{
-  margin: 10px 20px 10px 20px;
-  display: inline-block;
-  vertical-align: top;
-}
-
 .feedback-buttons{
+  text-align: center;
   padding-top: 25px;
   display: table;
+  width: 100%;
+  text-align: center;
 }
 
 .feedback-icon{

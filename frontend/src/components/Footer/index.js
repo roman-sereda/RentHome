@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import { Grid, Row, Col } from 'react-flexbox-grid'
 import styles from './styles.css'
+import { Link } from 'react-router'
 
 const data = [
   [['Компанія', '/#'],
@@ -8,7 +10,7 @@ const data = [
   ['Мобільний додаток', '/#']],
   [['Безпечні угоди', '/#'],
   ['Допомога', '/#'],
-  ['пропозиції', '/#'],
+  ['Пропозиції', '/#'],
   ['Ріелторам', '/#']],
   [['Агенствам', '/#'],
   ['Забудовникам', '/#'],
@@ -26,36 +28,59 @@ const feedback = [
   'skype'
 ]
 
+const logo_conf = {
+  lgOffset: 2,
+  lg: 1, sm: 12, xs: 12 }
+
+const text_conf = {
+  lg: 5, sm: 12, xs: 12 }
+
+const text_el_conf = {
+  lg: 4, sm: 4, xs: 4 }
+
+const feedback_conf = {
+  lg: 3, sm: 12, xs: 12 }
+
 export default class Footer extends Component{
   render(){
     return(
       <div className = 'footer full-width'>
         <div className = 'footer-top full-width'>
-          <span className = 'footer-in-wrapper'>
-            <img className = 'footer-image' src = '/footer-logo.png' />
-          </span>
-          <span className = 'footer-in-wrapper'>
-            {data.map((col) => {
-              return(
-                <div className = 'footer-text-block' key = { 'footer-col-' + col } >
-                  {col.map((el) => {
-                    return(
-                      <p key = { 'footer-el-' + el } className = 'white-text footer-text'>{ el[0] }</p>
-                    )
-                  })}
-                </div>
-              )
-            })}
-          </span>
-          <span className = 'footer-in-wrapper' >
-            <span className = 'feedback-buttons'>
-              { feedback.map((label) => {
-                return(
-                  <img src = { '/' + label + '.png' } className = 'feedback-icon' />
-                )
-              })}
-            </span>
-          </span>
+          <Row>
+            <Col {...logo_conf}>
+              <span className = 'footer-in-wrapper'>
+                <img className = 'footer-image' src = '/footer-logo.png' />
+              </span>
+            </Col>
+            <Col {...text_conf} >
+              <Row lgOffset = { 1 }>
+                {data.map((col) => {
+                  return(
+                    <Col {...text_el_conf} >
+                      <div className = 'footer-text-block footer-text' key = { 'footer-col-' + col } >
+                        {col.map((el) => {
+                          return(
+                            <Link to = { el[1] } key = { 'footer-el-' + el } className = 'white-text footer-text'>
+                              { el[0] }<br />
+                            </Link>
+                          )
+                        })}
+                      </div>
+                    </Col>
+                  )
+                })}
+              </Row>
+            </Col>
+            <Col {...feedback_conf}>
+              <span className = 'feedback-buttons'>
+                { feedback.map((label) => {
+                  return(
+                    <img src = { '/' + label + '.png' } className = 'feedback-icon' />
+                  )
+                })}
+              </span>
+            </Col>
+          </Row>
         </div>
         <div className = 'footer-bottom full-width'>
           <p className = 'copyrights'>© 2017-2020 RentHome.ua. Всі права захищені</p>

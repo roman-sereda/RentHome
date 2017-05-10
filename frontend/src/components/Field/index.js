@@ -6,7 +6,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid'
 import Button from '../Button'
 
 const search_bar_conf = {
-  lg: 8
+  lg:8,  md: 10, sm: 12, xs: 12
 }
 
 const input_conf = {
@@ -17,7 +17,7 @@ export default class Field extends Component{
   render(){
     return(
       <Row>
-        <Col lg = {2} />
+        <Col lg = {2} md = {1} />
         <Col {...search_bar_conf} className = 'search-bar'>
           <span >
             <input {...input_conf} className = 'search-bar-input' />
