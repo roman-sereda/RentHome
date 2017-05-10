@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
-import styles from './styles.css'
 
-import ReactDOM from 'react-dom'
+import styles       from './styles.css'
 
-import store from '../../store';
-
-import { connect }             from 'react-redux';
-
-import { setNameOfMonth,
-         setDate,
-         setCalendar,
-         setSelectedDate } from '../../actions/action-calendar';
+import store        from '../../store';
 
 import CalendarForm from './CalendarForm'
+
+import { connect }  from 'react-redux';
+
+import { setDate,
+         setCalendar,
+         setNameOfMonth,
+         setSelectedDate } from '../../actions/action-calendar';
+
 
 class Calendar extends Component{
 
@@ -26,19 +26,25 @@ class Calendar extends Component{
     this.currentDate = new Date()
     this.currentDate.setHours(0, 0, 0, 0);
 
-    this.setCurrentDate()
+    this.setTodayDate()
 
-    this.updateCalendar()
-    store.dispatch(setCalendar(this.renderCalendar(null)))
+    this.updateCalendarData()
+    store.dispatch(setCalendar(this.renderCalendar([null])))
   }
 
-  setCurrentDate(){
+  componentWillReceiveProps(nextProps) {
+    if (this.props.selectedDate !== nextProps.selectedDate) {
+      store.dispatch(setCalendar(this.renderCalendar(nextProps.selectedDate)))
+    }
+  }
+
+  setTodayDate(){
     this.Year = this.currentDate.getFullYear()
     this.Month = this.currentDate.getMonth()
     this.Day = this.currentDate.getDate()
   }
 
-  updateCalendar(){
+  updateCalendarData(){
     store.dispatch(setNameOfMonth(this.nameOfMonth[this.Month]))
     store.dispatch(setDate(this.templateDate(this.Day, this.Month, this.Year)))
   }
@@ -72,12 +78,12 @@ class Calendar extends Component{
     let requestedDate = new Date(this.Year, this.Month, this.Day)
 
     if (requestedDate >= this.currentDate){
-      this.updateCalendar()
+      this.updateCalendarData()
     }
     else{
-      this.setCurrentDate()
+      this.setTodayDate()
 
-      this.updateCalendar()
+      this.updateCalendarData()
     }
   }
 
@@ -89,21 +95,31 @@ class Calendar extends Component{
     }
   }
 
-  renderCalendar(propsSelectedDate) {
+  setBackgroundColor(id, selectedDate){
+    if (selectedDate == id){
+      return('red')
+    }
+    else {
+      return(null)
+    }
+  }
 
-   let  startMonth = new Date(this.Year, this.Month, 1).getUTCDay(),
-        countDay = 0,
+  renderCalendar(selectedDate) {
+
+    this.startMonth = new Date(this.Year, this.Month, 1).getUTCDay()
+
+   let  countDay = 0,
         countWeek = 5,
         dayCountInThisMonth = new Date(this.Year, this.Month + 1, 0).getDate(),
         dayCountInPrevMonth = new Date(this.Year, this.Month, 0).getDate(),
-        numberDay = dayCountInPrevMonth - startMonth,
+        numberDay = dayCountInPrevMonth - this.startMonth,
         numberMonth = this.Month-1 ,
         prevMonthEnd = false,
         thisMonthEnd = false
 
-    this.day = []
-    this.week = []
-    this.startMonth = startMonth
+    this.tdDay = []
+    this.trWeek = []
+
 
     for(let week = 1; week <= countWeek; week++){
       for(let day = 1; day <= 7; day++){
@@ -127,40 +143,31 @@ class Calendar extends Component{
           countWeek = 6
         }
 
-        this.day.push(<td key={'dayCalendar ' + countDay}
+        this.tdDay.push(<td key={'dayCalendar ' + countDay}
                           data-NumberDay={numberDay}
                           data-countDay={countDay}
-                          className={this.templateDate(numberDay, numberMonth, this.Year)}
                           id={this.templateDate(numberDay, numberMonth, this.Year)}
 
-                          style={{color: this.setColor(numberDay, thisMonthEnd), backgroundColor: this.testFunctionChangeColor(this.templateDate(numberDay, numberMonth, this.Year), propsSelectedDate)}}
-                          onClick={(e) => { this.changeMonth({numberDay: e.target.getAttribute("data-NumberDay"),
-                                                      countDay:  e.target.getAttribute("data-countDay")})
+                          style={{ color: this.setColor(numberDay, thisMonthEnd),
+                                   backgroundColor: this.setBackgroundColor(this.templateDate(numberDay, numberMonth, this.Year), selectedDate)
+                                }}
 
-                                            store.dispatch(setSelectedDate(e.target.getAttribute("id")))
-                                          }
-                                    }
-                      >{numberDay}</td>)
+                          onClick={(e) => {
+                            if (e.target.getAttribute("style") !== 'color: gray;') {
+
+                              this.changeMonth({numberDay: e.target.getAttribute("data-NumberDay"),
+                                                countDay:  e.target.getAttribute("data-countDay")})
+
+                              store.dispatch(setSelectedDate(e.target.getAttribute("id")))
+                            }}}
+
+                        >{numberDay}</td>)
       }
-      this.week.push(<tr key={'weekCalendar ' + week}>{this.day}</tr>)
-      this.day = []
-    }
-    return(this.week)
-  }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.selectedDate !== nextProps.selectedDate) {
-      store.dispatch(setCalendar(this.renderCalendar(nextProps.selectedDate)))
+      this.trWeek.push(<tr key={'weekCalendar ' + week}>{this.tdDay}</tr>)
+      this.tdDay = []
     }
-  }
-
-  testFunctionChangeColor(id, propsSelectedDate){
-    if (propsSelectedDate == id){
-      return('red')
-    }
-    else {
-      return(null)
-    }
+    return(this.trWeek)
   }
 
   render(){

@@ -27,7 +27,8 @@ const user = function(state = initialState, action) {
     case types.RESET_ALL_CALENDAR_DATA:
       return Object.assign({}, state, { nameOfMonth: action.reset,
                                         date: action.reset,
-                                        calendarBody: action.reset});
+                                        calendarBody: action.reset,
+                                        selectedDate: action.reset});
     }
   return state;
 }
