@@ -22,8 +22,8 @@ export default class Field extends Component{
         <Col {...search_bar_conf} className = 'search-bar'>
           <span >
             <input {...input_conf} className = 'search-bar-input' />
-            <span className = 'search-calendar'><Calendar /></span>
-            <span className = 'search-calendar'><Calendar /></span>
+            <span className = 'search-calendar'><Calendar type='Arrival' /></span>
+            <span className = 'search-calendar'><Calendar type='Departure' /></span>
             <Button label = 'Шукати' />
           </span>
         </Col>

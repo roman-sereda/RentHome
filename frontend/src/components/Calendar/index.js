@@ -2,17 +2,23 @@ import React, { Component } from 'react'
 
 import styles       from './styles.css'
 
+import store        from '../../store'
+
 import CalendarForm from './CalendarForm'
 
 import { connect }  from 'react-redux';
 
-export default class Calendar extends Component{
+import { setDateArrival,
+         setDateDeparture } from '../../actions/action-calendar'
+
+class Calendar extends Component{
 
   constructor() {
     super();
     this.state = { date: null,
                    nameOfMonth: null,
-                   calendarBody: null };
+                   calendarBody: null,
+                   choisedDate: null};
  }
 
   componentWillMount(){
@@ -29,9 +35,21 @@ export default class Calendar extends Component{
 
     this.updateCalendarData()
 
+    store.dispatch(setDateArrival(new Date(this.Year, this.Month, this.Day)))
+
     this.setState({
-        calendarBody: this.renderCalendar([null])
+        calendarBody: this.renderCalendar({selectedDate: [null]})
     })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.dateArrival !== nextProps.dateArrival && this.props.type == "Departure") {
+      console.log('Good')
+      this.setState({
+          calendarBody: this.renderCalendar({selectedDate: null,
+                                             dateArrival: nextProps.dateArrival})
+      })
+    }
   }
 
   setTodayDate(){
@@ -61,7 +79,7 @@ export default class Calendar extends Component{
         this.Year -= 1
       }
       this.setState({
-          calendarBody: this.renderCalendar([null])
+          calendarBody: this.renderCalendar({selectedDate: this.state.choisedDate})
       })
     }
     else if (state == "next" || (Number(numberDay) + Number(this.startMonth)) < Number(countDay)){
@@ -71,7 +89,7 @@ export default class Calendar extends Component{
         this.Year += 1
       }
       this.setState({
-          calendarBody: this.renderCalendar([null])
+          calendarBody: this.renderCalendar({selectedDate: this.state.choisedDate})
       })
     }
 
@@ -87,9 +105,12 @@ export default class Calendar extends Component{
     }
   }
 
-  setColor(numberDay, thisMonthEnd, selectedDate, id) {
+  setColor(numberDay, thisMonthEnd, selectedDate, id, dateArrival) {
     if (selectedDate == id){
       return('white')
+    }
+    else if (dateArrival > new Date(this.Year, this.Month, numberDay) && thisMonthEnd == false && this.props.type == "Departure"){
+      return("gray")
     }
     else if (this.currentDate > new Date(this.Year, this.Month, numberDay) && thisMonthEnd == false){
       return("gray")
@@ -107,7 +128,7 @@ export default class Calendar extends Component{
     }
   }
 
-  renderCalendar(selectedDate) {
+  renderCalendar({selectedDate, dateArrival=this.props.dateArrival}) {
     this.startMonth = new Date(this.Year, this.Month, 1).getUTCDay()
 
    let  countDay = 0,
@@ -142,7 +163,10 @@ export default class Calendar extends Component{
           thisMonthEnd = true
         }
 
-        if (this.currentDate <= new Date(this.Year, this.Month, numberDay)){
+        if (dateArrival <= new Date(this.Year, this.Month, numberDay) && this.props.type == "Departure"){
+          unavailableDay = false
+        }
+        else if(this.currentDate <= new Date(this.Year, this.Month, numberDay) && this.props.type == "Arrival"){
           unavailableDay = false
         }
 
@@ -156,7 +180,7 @@ export default class Calendar extends Component{
                           data-unavailableDay={unavailableDay}
                           id={this.templateDate(numberDay, numberMonth, this.Year)}
 
-                          style={{ color: this.setColor(numberDay, thisMonthEnd, selectedDate, this.templateDate(numberDay, numberMonth, this.Year)), borderRadius: '25px',
+                          style={{ color: this.setColor(numberDay, thisMonthEnd, selectedDate, this.templateDate(numberDay, numberMonth, this.Year), dateArrival), borderRadius: '25px',
                                    backgroundColor: this.setBackgroundColor(this.templateDate(numberDay, numberMonth, this.Year), selectedDate)
                                 }}
 
@@ -167,8 +191,14 @@ export default class Calendar extends Component{
                                                 countDay:  e.target.getAttribute("data-countDay")})
 
                               this.setState({
-                                  calendarBody: this.renderCalendar(e.target.getAttribute("id"))
+                                  choisedDate: e.target.getAttribute("id"),
+                                  calendarBody: this.renderCalendar({selectedDate: e.target.getAttribute("id")})
                               })
+                              if (this.props.type == "Arrival") {
+                                store.dispatch(setDateArrival(new Date(this.Year, this.Month, e.target.getAttribute("data-NumberDay"))))
+                              }else{
+                                store.dispatch(setDateDeparture(e.target.getAttribute("id")))
+                              }
                             }}}
 
                         >{numberDay}</span></span>)
@@ -191,3 +221,11 @@ export default class Calendar extends Component{
     )
   }
 }
+
+const mapStateToProps = function(store) {
+  return {
+    dateArrival: store.calendar.dateArrival,
+  };
+};
+
+export default connect(mapStateToProps)(Calendar);
