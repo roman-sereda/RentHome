@@ -12,8 +12,8 @@ export default (
   <Router history = { browserHistory} >
     <Route path="/" component={ WelcomePage } >
       <Route path="/auth" component={ Auth } >
-        <Route path = '/signin' component={ SignIn } />
-        <Route path = '/signup' component={ SignUp } />
+        <Route path = '/auth/signin' component={ SignIn } />
+        <Route path = '/auth/signup' component={ SignUp } />
       </Route>
     </Route>
   </Router>

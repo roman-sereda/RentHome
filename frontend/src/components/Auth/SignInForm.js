@@ -5,8 +5,10 @@ import Button from '../Button'
 export default class SignIn extends Component {
 
   render(){
-    <span>
-      hyi
-    </span>
+    return(
+      <span>
+        hyi
+      </span>
+    )
   }
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import styles from './styles.css'
 
 import SignUp from './SignUpForm'
 import SignIn from './SignInForm'
