@@ -2,18 +2,19 @@ import React, { Component } from 'react'
 
 import styles       from './styles.css'
 
+import store        from '../../store';
+
 import CalendarForm from './CalendarForm'
 
 import { connect }  from 'react-redux';
 
-export default class Calendar extends Component{
+import { setDate,
+         setCalendar,
+         setNameOfMonth,
+         setSelectedDate } from '../../actions/action-calendar';
 
-  constructor() {
-    super();
-    this.state = { date: null,
-                   nameOfMonth: null,
-                   calendarBody: null };
- }
+
+class Calendar extends Component{
 
   componentWillMount(){
     this.nameOfMonth = [
@@ -27,11 +28,13 @@ export default class Calendar extends Component{
 
     this.setTodayDate()
 
-    this.updateCalendarData()
+    store.dispatch(setCalendar(this.renderCalendar([null])))
+  }
 
-    this.setState({
-        calendarBody: this.renderCalendar([null])
-    })
+  componentWillReceiveProps(nextProps) {
+    if (this.props.selectedDate !== nextProps.selectedDate) {
+      store.dispatch(setCalendar(this.renderCalendar(nextProps.selectedDate)))
+    }
   }
 
   setTodayDate(){
@@ -41,10 +44,8 @@ export default class Calendar extends Component{
   }
 
   updateCalendarData(){
-    this.setState({
-        nameOfMonth: this.nameOfMonth[this.Month],
-        date: this.templateDate(this.Day, this.Month, this.Year)
-    })
+    store.dispatch(setNameOfMonth(this.nameOfMonth[this.Month]))
+    store.dispatch(setDate(this.templateDate(this.Day, this.Month, this.Year)))
   }
 
   templateDate(day, month, year){
@@ -56,23 +57,21 @@ export default class Calendar extends Component{
 
     if (state == "prev" || Number(numberDay) > Number(countDay)){
       this.Month -= 1
+
       if(this.Month < 0){
         this.Month = 11
         this.Year -= 1
       }
-      this.setState({
-          calendarBody: this.renderCalendar([null])
-      })
+      store.dispatch(setSelectedDate([null]))
     }
     else if (state == "next" || (Number(numberDay) + Number(this.startMonth)) < Number(countDay)){
       this.Month += 1
+
       if (this.Month > 11) {
         this.Month = 0
         this.Year += 1
       }
-      this.setState({
-          calendarBody: this.renderCalendar([null])
-      })
+      store.dispatch(setSelectedDate([null]))
     }
 
     let requestedDate = new Date(this.Year, this.Month, this.Day)
@@ -108,6 +107,7 @@ export default class Calendar extends Component{
   }
 
   renderCalendar(selectedDate) {
+
     this.startMonth = new Date(this.Year, this.Month, 1).getUTCDay()
 
    let  countDay = 0,
@@ -117,8 +117,7 @@ export default class Calendar extends Component{
         numberDay = dayCountInPrevMonth - this.startMonth,
         numberMonth = this.Month-1 ,
         prevMonthEnd = false,
-        thisMonthEnd = false,
-        unavailableDay = true
+        thisMonthEnd = false
 
     this.tdDay = []
     this.trWeek = []
@@ -142,10 +141,6 @@ export default class Calendar extends Component{
           thisMonthEnd = true
         }
 
-        if (this.currentDate <= new Date(this.Year, this.Month, numberDay)){
-          unavailableDay = false
-        }
-
         if (week == 5 && day == 7 && thisMonthEnd == false){
           countWeek = 6
         }
@@ -153,7 +148,6 @@ export default class Calendar extends Component{
         this.tdDay.push(<span className = 'calendar-cell'><span className = 'day-wrapper' key={'dayCalendar ' + countDay}
                           data-NumberDay={numberDay}
                           data-countDay={countDay}
-                          data-unavailableDay={unavailableDay}
                           id={this.templateDate(numberDay, numberMonth, this.Year)}
 
                           style={{ color: this.setColor(numberDay, thisMonthEnd, selectedDate, this.templateDate(numberDay, numberMonth, this.Year)), borderRadius: '25px',
@@ -161,14 +155,12 @@ export default class Calendar extends Component{
                                 }}
 
                           onClick={(e) => {
-                            if (e.target.getAttribute("data-unavailableDay") !== 'true') {
+                            if (e.target.getAttribute("style") !== 'color: gray;') {
 
                               this.changeMonth({numberDay: e.target.getAttribute("data-NumberDay"),
                                                 countDay:  e.target.getAttribute("data-countDay")})
 
-                              this.setState({
-                                  calendarBody: this.renderCalendar(e.target.getAttribute("id"))
-                              })
+                              store.dispatch(setSelectedDate(e.target.getAttribute("id")))
                             }}}
 
                         >{numberDay}</span></span>)
@@ -183,11 +175,23 @@ export default class Calendar extends Component{
   render(){
     return(
       <div>
-        <CalendarForm date={this.state.date}
+        <CalendarForm date={this.props.date}
+                      label = { this.props.label }
                       changeMonth={this.changeMonth.bind(this)}
-                      NameOfMonth={this.state.nameOfMonth}
-                      Calendar={this.state.calendarBody} />
+                      NameOfMonth={this.props.nameOfMonth}
+                      Calendar={this.props.calendarBody} />
       </div>
     )
   }
 }
+
+const mapStateToProps = function(store) {
+  return {
+    date: store.calendar.date,
+    nameOfMonth: store.calendar.nameOfMonth,
+    calendarBody: store.calendar.calendarBody,
+    selectedDate: store.calendar.selectedDate
+  };
+};
+
+export default connect(mapStateToProps)(Calendar);
