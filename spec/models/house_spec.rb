@@ -37,8 +37,7 @@ RSpec.describe House, type: :model do
 
   it "should validate if rent end is later than rent start" do
     @house.rent_start = "2017-05-04"
-    @house.rent_end = "201
-    7-05-03"
+    @house.rent_end = "2017-05-03"
     expect(@house).to_not be_valid
     expect(@house.errors[:rent_start]).to include("should be less than, or equal to rend_end")
     expect(@house.errors[:rent_end]).to include("should be greater than, or equal to rend_start")
