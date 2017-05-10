@@ -56,7 +56,6 @@
 
 /* calendar */
 .calendar{
-  height: 120px;
   width: 100%;
   display: table;
 }
@@ -74,7 +73,7 @@
   vertical-align: middle;
   width: 15px;
   cursor: pointer;
-  height: 15px;
+  height: 24px;
 }
 
 
