@@ -216,8 +216,8 @@ DEPENDENCIES
   database_cleaner
   devise_token_auth
   factory_girl_rails
-  impressionist
   ffaker
+  impressionist
   kaminari
   listen (~> 3.0.5)
   omniauth
