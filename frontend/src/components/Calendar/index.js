@@ -142,7 +142,7 @@ export default class Calendar extends Component{
           thisMonthEnd = true
         }
 
-        if (this.currentDate < new Date(this.Year, this.Month, numberDay)){
+        if (this.currentDate <= new Date(this.Year, this.Month, numberDay)){
           unavailableDay = false
         }
 
