@@ -87,8 +87,11 @@ class Calendar extends Component{
     }
   }
 
-  setColor(numberDay, thisMonthEnd) {
-    if (this.currentDate > new Date(this.Year, this.Month, numberDay) && thisMonthEnd == false){
+  setColor(numberDay, thisMonthEnd, selectedDate, id) {
+    if (selectedDate == id){
+      return('white')
+    }
+    else if (this.currentDate > new Date(this.Year, this.Month, numberDay) && thisMonthEnd == false){
       return("gray")
     }else{
       return("black")
@@ -143,12 +146,12 @@ class Calendar extends Component{
           countWeek = 6
         }
 
-        this.tdDay.push(<td key={'dayCalendar ' + countDay}
+        this.tdDay.push(<span className = 'calendar-cell'><span className = 'day-wrapper' key={'dayCalendar ' + countDay}
                           data-NumberDay={numberDay}
                           data-countDay={countDay}
                           id={this.templateDate(numberDay, numberMonth, this.Year)}
 
-                          style={{ color: this.setColor(numberDay, thisMonthEnd),
+                          style={{ color: this.setColor(numberDay, thisMonthEnd, selectedDate, this.templateDate(numberDay, numberMonth, this.Year)), borderRadius: '25px',
                                    backgroundColor: this.setBackgroundColor(this.templateDate(numberDay, numberMonth, this.Year), selectedDate)
                                 }}
 
@@ -161,7 +164,7 @@ class Calendar extends Component{
                               store.dispatch(setSelectedDate(e.target.getAttribute("id")))
                             }}}
 
-                        >{numberDay}</td>)
+                        >{numberDay}</span></span>)
       }
 
       this.trWeek.push(<tr key={'weekCalendar ' + week}>{this.tdDay}</tr>)
