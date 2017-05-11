@@ -1,23 +1,41 @@
 import React, { Component } from 'react'
+import { Link, browserHistory } from 'react-router'
+import styles from './styles.css'
 
-import AuthForm from './AuthForm'
+import SignUp from './SignUpForm'
+import SignIn from './SignInForm'
 
-export default class AuthPage extends Component {
+export default class Auth extends Component {
 
-  onSubmit() {
-    event.preventDefault();
-    let user = {};
+  componentDidMount(){
+    console.log( this.props.route.auth )
+    this.addPressButtonEffect( this.props.routes[2].auth )
+    window.addEventListener('click', this.handleClick)
+  }
 
-    user.email      = this.refs.authForm.refs.email.value
-    user.password   = this.refs.authForm.refs.password.value
+  handleClick(event){
+    var modal = document.getElementById('modal-window')
+    if(event.target == modal){
+      browserHistory.push('/')
+    }
+  }
 
-    console.log(user)
+  addPressButtonEffect(button){
+    document.getElementById('signin').className = 'auth-button blue-text'
+    document.getElementById('signup').className = 'auth-button blue-text'
+    document.getElementById(button).className = 'auth-button white-text pressed'
   }
 
   render() {
     return (
-      <div>
-        <AuthForm onSubmit={this.onSubmit.bind(this)} ref="authForm" />
+      <div id = 'modal-window' className = 'modal-window-show' >
+        <div className = 'auth-window'>
+          <div className = 'auth-buttons'>
+            <Link to = '/auth/signin' onClick = {() => this.addPressButtonEffect('signin')}><span id = 'signin' className = 'auth-button blue-text'>Увійти в обліковий запис</span></Link>
+            <Link to = '/auth/signup' onClick = {() => this.addPressButtonEffect('signup')}><span id = 'signup' className = 'auth-button blue-text'>Зареєструватися</span></Link>
+          </div>
+          { this.props.children }
+        </div>
       </div>
     );
   }

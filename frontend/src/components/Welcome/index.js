@@ -26,6 +26,7 @@ export default class WelcomePage extends Component{
   render(){
     return(
       <span>
+        { this.props.children }
         <Header />
         <Carousel />
         <Field />

@@ -7,16 +7,8 @@
   max-height: 100px;
   position: relative;
   box-shadow: 0 0 60px rgba(121,162,248,0.2);
-  z-index: 99999999999999999;
+  z-index: 999;
   padding: 30px 40px 10px 40px;
-}
-
-.search-bar-input{
-  outline: none;
-  color: #7aa2f8;
-  border-radius: 25px;
-  padding: 10px 20px 10px 20px;
-  border: 2px solid #f1f4fe;
 }
 
 .search-calendar{
