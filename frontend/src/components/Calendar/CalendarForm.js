@@ -16,10 +16,10 @@ export default class CalendarForm extends Component{
     return(
       <span>
         <button onClick={() => this.openCalendar()} className="calendar-field" >
-          <div className = 'calendar-field-left-part'> {this.props.date} </div>
+          <div className = 'calendar-field-left-part'> { this.props.date == null ? this.props.label : this.props.date } </div>
           <div className = 'calendar-field-right-part'> &#9475; &#9650; </div>
         </button>
-        <div id='myDropdown' className='show-dropdown-content' ref='content'>
+        <div id='myDropdown' className='hide-dropdown-content' ref='content'>
           <div className = 'dropdown-header' >
             <span className = 'calendar-header-cell calendar-arrow blue-text' onClick={() => this.props.changeMonth({state: "prev"})} >&#9664; </span>
             <span className = 'calendar-header-cell'><h2 className = 'blue-text'> {this.props.NameOfMonth} </h2></span>

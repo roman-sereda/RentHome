@@ -32,6 +32,14 @@ body{
   text-align: right;
 }
 
+.input{
+  outline: none;
+  color: #7aa2f8;
+  border-radius: 25px;
+  padding: 10px 20px 10px 20px;
+  border: 2px solid #f1f4fe;
+}
+
 ::-webkit-input-placeholder{ color: #7aa2f8; }
 :-moz-placeholder{ color: #7aa2f8; }
 ::-moz-placeholder{ color: #7aa2f8; }
