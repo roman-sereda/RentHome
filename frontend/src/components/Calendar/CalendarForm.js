@@ -21,9 +21,9 @@ export default class CalendarForm extends Component{
         </button>
         <div id='myDropdown' className='hide-dropdown-content' ref='content'>
           <div className = 'dropdown-header' >
-            <span className = 'calendar-header-cell calendar-arrow blue-text' onClick={() => this.props.changeMonth({numberDay: 1, state: "prev"})} >&#9664; </span>
+            <span className = 'calendar-header-cell calendar-arrow blue-text' onClick={() => this.props.changeMonth({state: "prev"})} >&#9664; </span>
             <span className = 'calendar-header-cell'><h2 className = 'blue-text'> {this.props.NameOfMonth} </h2></span>
-            <span className = 'calendar-header-cell calendar-arrow blue-text' onClick={() => this.props.changeMonth({numberDay: 1, state: "next"})} >&#9654; </span>
+            <span className = 'calendar-header-cell calendar-arrow blue-text' onClick={() => this.props.changeMonth({state: "next"})} >&#9654; </span>
           </div>
           <div className = 'calendar' >
               <span className = 'calendar-row calendar-week-days'>

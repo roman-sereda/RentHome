@@ -2,17 +2,22 @@ import React, { Component } from 'react'
 
 import styles       from './styles.css'
 
+import store        from '../../store'
+
 import CalendarForm from './CalendarForm'
 
 import { connect }  from 'react-redux';
 
-export default class Calendar extends Component{
+import { setDateArrival,
+         setDateDeparture } from '../../actions/action-calendar'
+
+class Calendar extends Component{
 
   constructor() {
     super();
-    this.state = { date: null,
-                   nameOfMonth: null,
-                   calendarBody: null };
+    this.state = { nameOfMonth: null,
+                   calendarBody: null,
+                   choisedDate: null};
  }
 
   componentWillMount(){
@@ -22,76 +27,92 @@ export default class Calendar extends Component{
     "Липень", "Серпень", "Вересень",
     "Жовтень", "Листопад", "Грудень"]
 
-    this.currentDate = new Date()
-    this.currentDate.setHours(0, 0, 0, 0);
+    this.todayDate = new Date()
+    this.todayDate.setHours(0, 0, 0, 0);
 
-    this.setTodayDate()
+    this.SplitTheTodayDateIntoParts()
 
-    this.updateCalendarData()
+    this.setInitialPleas()
 
-    this.setState({
-        calendarBody: this.renderCalendar([null])
-    })
+    this.setNameOfMonth(this.Month)
+
+    store.dispatch(setDateArrival(new Date(this.Year, this.Month, this.Day)))
+
+    this.setCalendarBody({selectedDate: [null]})
+
   }
 
-  setTodayDate(){
-    this.Year = this.currentDate.getFullYear()
-    this.Month = this.currentDate.getMonth()
-    this.Day = this.currentDate.getDate()
-  }
+  componentWillReceiveProps(nextProps) {
+    if (this.props.dateArrival !== nextProps.dateArrival && this.props.type == "Departure") {
 
-  updateCalendarData(){
-    this.setState({
-        nameOfMonth: this.nameOfMonth[this.Month],
-        date: this.templateDate(this.Day, this.Month, this.Year)
-    })
-  }
+      let rightSelectedDate
 
-  templateDate(day, month, year){
-    return(day + '-' + (Number(month) + 1) + '-' + year)
-  }
-
-  changeMonth({numberDay, state, countDay}){
-    this.Day = numberDay
-
-    if (state == "prev" || Number(numberDay) > Number(countDay)){
-      this.Month -= 1
-      if(this.Month < 0){
-        this.Month = 11
-        this.Year -= 1
+      if(nextProps.dateOfDeparture >= nextProps.dateArrival) {
+        rightSelectedDate = this.state.choisedDate
       }
-      this.setState({
-          calendarBody: this.renderCalendar([null])
-      })
-    }
-    else if (state == "next" || (Number(numberDay) + Number(this.startMonth)) < Number(countDay)){
-      this.Month += 1
-      if (this.Month > 11) {
-        this.Month = 0
-        this.Year += 1
+      else{
+        rightSelectedDate = "Виберіть дату виїзду"
+        this.setPropsDate(null)
       }
-      this.setState({
-          calendarBody: this.renderCalendar([null])
-      })
+
+      this.setChoisedDate(rightSelectedDate)
+
+      this.setCalendarBody({ selectedDate: rightSelectedDate,
+                             dateArrival:  nextProps.dateArrival })
     }
+  }
 
-    let requestedDate = new Date(this.Year, this.Month, this.Day)
+  setInitialPleas(){
+    let PleaseChoiseDate
 
-    if (requestedDate >= this.currentDate){
-      this.updateCalendarData()
+    if (this.props.type == "Arrival") {
+      PleaseChoiseDate = "Виберіть дату заїзду"
     }
     else{
-      this.setTodayDate()
+      PleaseChoiseDate = "Виберіть дату виїзду"
+    }
 
-      this.updateCalendarData()
+    this.setState({
+        choisedDate: PleaseChoiseDate
+    })
+  }
+
+  setPropsDate(date){
+    if (this.props.type == "Arrival") {
+      store.dispatch(setDateArrival(date))
+    }
+    else{
+      store.dispatch(setDateDeparture(date))
     }
   }
 
-  setColor(numberDay, thisMonthEnd, selectedDate, id) {
+  setNameOfMonth(numberOfMonth){
+    this.setState({
+        nameOfMonth: this.nameOfMonth[numberOfMonth]
+    })
+  }
+
+  setCalendarBody({selectedDate, dateArrival}){
+    this.setState({
+        calendarBody: this.renderCalendar({ selectedDate: selectedDate,
+                                            dateArrival:  dateArrival })
+    })
+  }
+
+  setChoisedDate(choisedDate){
+    this.setState({
+        choisedDate: choisedDate
+    })
+  }
+
+  setColor(numberDay, thisMonthEnd, selectedDate, id, dateArrival, numberMonth) {
     if (selectedDate == id){
       return('white')
     }
-    else if (this.currentDate > new Date(this.Year, this.Month, numberDay) && thisMonthEnd == false){
+    else if (dateArrival > new Date(this.Year, numberMonth, numberDay) && this.props.type == "Departure"){
+      return("gray")
+    }
+    else if (this.todayDate > new Date(this.Year, numberMonth, numberDay) && thisMonthEnd == false){
       return("gray")
     }else{
       return("black")
@@ -107,7 +128,58 @@ export default class Calendar extends Component{
     }
   }
 
-  renderCalendar(selectedDate) {
+  SplitTheTodayDateIntoParts(){
+    this.Year = this.todayDate.getFullYear()
+    this.Month = this.todayDate.getMonth()
+    this.Day = this.todayDate.getDate()
+  }
+
+  templateDate(day, month, year){
+
+    month = Number(month) + 1
+
+    if (String(day).length == 1){
+      day = String(0) + String(day)
+    }
+
+    if (String(month).length  == 1){
+      month = String(0) + String(month)
+    }
+
+    return(day + '-' + month + '-' + year)
+  }
+
+  changeMonth({numberDay=this.Day, state, countDay}){
+    this.Day = numberDay
+
+    if (state == "prev" || Number(numberDay) > Number(countDay)){
+      this.Month -= 1
+      if(this.Month < 0){
+        this.Month = 11
+        this.Year -= 1
+      }
+    }
+    else if (state == "next" || (Number(numberDay) + Number(this.startMonth)) < Number(countDay)){
+      this.Month += 1
+      if (this.Month > 11) {
+        this.Month = 0
+        this.Year += 1
+      }
+    }
+
+    let requestedDate = new Date(this.Year, this.Month + 1, 0)
+
+    if (requestedDate >= this.todayDate){
+      this.setNameOfMonth(this.Month)
+
+      this.setCalendarBody({selectedDate: this.state.choisedDate})
+    }
+    else{
+      this.Month += 1
+    }
+  }
+
+  renderCalendar({selectedDate, dateArrival=this.props.dateArrival}) {
     this.startMonth = new Date(this.Year, this.Month, 1).getUTCDay()
 
    let  countDay = 0,
@@ -115,7 +187,7 @@ export default class Calendar extends Component{
         dayCountInThisMonth = new Date(this.Year, this.Month + 1, 0).getDate(),
         dayCountInPrevMonth = new Date(this.Year, this.Month, 0).getDate(),
         numberDay = dayCountInPrevMonth - this.startMonth,
-        numberMonth = this.Month-1 ,
+        numberMonth = this.Month-1,
         prevMonthEnd = false,
         thisMonthEnd = false,
         unavailableDay = true
@@ -142,7 +214,10 @@ export default class Calendar extends Component{
           thisMonthEnd = true
         }
 
-        if (this.currentDate <= new Date(this.Year, this.Month, numberDay)){
+        if (dateArrival <= new Date(this.Year, numberMonth, numberDay) && this.props.type == "Departure"){
+          unavailableDay = false
+        }
+        else if(this.todayDate <= new Date(this.Year, numberMonth, numberDay) && this.props.type == "Arrival"){
           unavailableDay = false
         }
 
@@ -156,19 +231,32 @@ export default class Calendar extends Component{
                           data-unavailableDay={unavailableDay}
                           id={this.templateDate(numberDay, numberMonth, this.Year)}
 
-                          style={{ color: this.setColor(numberDay, thisMonthEnd, selectedDate, this.templateDate(numberDay, numberMonth, this.Year)), borderRadius: '25px',
-                                   backgroundColor: this.setBackgroundColor(this.templateDate(numberDay, numberMonth, this.Year), selectedDate)
+                          style={{ color: this.setColor( numberDay, thisMonthEnd,
+                                                         selectedDate, this.templateDate( numberDay,
+                                                                                          numberMonth,
+                                                                                          this.Year ),
+                                                         dateArrival, numberMonth ),
+
+                                   borderRadius: '25px',
+
+                                   backgroundColor: this.setBackgroundColor( this.templateDate( numberDay,
+                                                                                                numberMonth,
+                                                                                                this.Year ),
+                                                                             selectedDate )
                                 }}
 
                           onClick={(e) => {
                             if (e.target.getAttribute("data-unavailableDay") !== 'true') {
 
-                              this.changeMonth({numberDay: e.target.getAttribute("data-NumberDay"),
-                                                countDay:  e.target.getAttribute("data-countDay")})
+                              this.changeMonth({ numberDay: e.target.getAttribute("data-NumberDay"),
+                                                 countDay:  e.target.getAttribute("data-countDay") })
 
-                              this.setState({
-                                  calendarBody: this.renderCalendar(e.target.getAttribute("id"))
-                              })
+                              this.setChoisedDate(e.target.getAttribute("id"))
+
+                              this.setCalendarBody({ selectedDate:  e.target.getAttribute("id") })
+
+                              this.setPropsDate(new Date(this.Year, this.Month, e.target.getAttribute("data-NumberDay")))
+
                             }}}
 
                         >{numberDay}</span></span>)
@@ -183,7 +271,7 @@ export default class Calendar extends Component{
   render(){
     return(
       <div>
-        <CalendarForm date={this.state.date}
+        <CalendarForm date={this.state.choisedDate}
                       changeMonth={this.changeMonth.bind(this)}
                       NameOfMonth={this.state.nameOfMonth}
                       Calendar={this.state.calendarBody} />
@@ -191,3 +279,12 @@ export default class Calendar extends Component{
     )
   }
 }
+
+const mapStateToProps = function(store) {
+  return {
+    dateArrival: store.calendar.dateArrival,
+    dateOfDeparture: store.calendar.dateOfDeparture
+  };
+};
+
+export default connect(mapStateToProps)(Calendar);

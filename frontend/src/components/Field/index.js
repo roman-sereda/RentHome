@@ -20,10 +20,10 @@ export default class Field extends Component{
       <Row>
         <Col lg = {2} md = {1} />
         <Col {...search_bar_conf} className = 'search-bar'>
-          <span >
+          <span>
             <input {...input_conf} className = 'input' />
-            <span className = 'search-calendar'><Calendar label = 'Виберіть дату заїзду' /></span>
-            <span className = 'search-calendar'><Calendar label = 'Виберіть дату виїзду' /></span>
+            <span className = 'search-calendar'><Calendar type='Arrival' /></span>
+            <span className = 'search-calendar'><Calendar type='Departure' /></span>
             <Button label = 'Шукати' />
           </span>
         </Col>

@@ -1,36 +1,22 @@
 import * as types from '../actions/action-types';
 
-export function setNameOfMonth(name) {
+export function setDateArrival(dateArrival) {
   return {
-    type: types.SET_NAME_OF_MONTH,
-    name
+    type: types.SET_DATE_ARRIVAL,
+    dateArrival
   };
 }
 
-export function setDate(date) {
+export function setDateDeparture(dateDeparture) {
   return {
-    type: types.SET_DATE,
-    date
-  };
-}
-
-export function setCalendar(calendar) {
-  return {
-    type: types.SET_CALENDAR_BODY,
-    calendar
-  }
-}
-
-export function setSelectedDate(selectedDate) {
-  return {
-    type: types.SET_SELECTED_DATE,
-    selectedDate
+    type: types.SET_DATE_DEPARTURE,
+    dateDeparture
   }
 }
 
 export function resetAllCalendarData() {
   return {
     type: types.RESET_ALL_CALENDAR_DATA,
-    reset: [null]
+    reset: null
   }
 }
