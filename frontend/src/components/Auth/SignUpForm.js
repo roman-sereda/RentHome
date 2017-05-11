@@ -6,9 +6,15 @@ export default class SignUp extends Component {
 
   render(){
     return(
-      <span>
-        hyi
-      </span>
+      <div>
+        <div className = 'space-between-auth-buttons' />
+        <div className = 'auth-social-button'><Button label = 'Увійти через Facebook' link = '/#' /></div>
+        <div className = 'auth-social-button'><Button label = 'Увійти через Goole+' link = '/#' /></div>
+        <div className = 'black-text auth-separator-text'> Або </div>
+        <div className = 'auth-input' ><input placeholder = 'Email' className = 'email-input input' /></div>
+        <div className = 'auth-input' ><input placeholder = 'Пароль' className = 'pass-input input' /></div>
+        <div className = 'auth-social-button'><Button label = 'Зареєструватися' link = '/#' /></div>
+      </div>
     )
   }
 }

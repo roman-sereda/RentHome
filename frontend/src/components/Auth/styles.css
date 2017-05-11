@@ -1,9 +1,4 @@
 /* index */
-
-.modal-window-show{
-  display: none;
-}
-
 .modal-window-show{
   position: fixed;
   z-index: 999999999999999999;
@@ -79,6 +74,7 @@
 }
 
 .auth-social-button{ padding-bottom: 20px; }
+.space-between-auth-buttons{ margin-top: 40px;}
 .auth-separator-text{ font-size: 18px; margin-bottom: 15px}
 .auth-input{ display: block; padding-bottom: 20px; width: 100%; margin: 0 auto;}
 .email-input, .pass-input{

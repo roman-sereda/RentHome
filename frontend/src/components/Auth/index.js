@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 import styles from './styles.css'
 
 import SignUp from './SignUpForm'
@@ -10,6 +10,14 @@ export default class Auth extends Component {
   componentDidMount(){
     console.log( this.props.route.auth )
     this.addPressButtonEffect( this.props.routes[2].auth )
+    window.addEventListener('click', this.handleClick)
+  }
+
+  handleClick(event){
+    var modal = document.getElementById('modal-window')
+    if(event.target == modal){
+      browserHistory.push('/')
+    }
   }
 
   addPressButtonEffect(button){
@@ -20,7 +28,7 @@ export default class Auth extends Component {
 
   render() {
     return (
-      <div className = 'modal-window-show' >
+      <div id = 'modal-window' className = 'modal-window-show' >
         <div className = 'auth-window'>
           <div className = 'auth-buttons'>
             <Link to = '/auth/signin' onClick = {() => this.addPressButtonEffect('signin')}><span id = 'signin' className = 'auth-button blue-text'>Увійти в обліковий запис</span></Link>
