@@ -46,7 +46,7 @@
   background: linear-gradient(to left,#76a6f8, #8b94fd );
 }
 
-/* signin */
+/* signup */
 
 .auth-blocks{
   margin: 30px 0 30px 0;
@@ -62,10 +62,18 @@
   text-align: center;
   margin: 0 auto;
   width: 80%;
-  box-shadow: 0 0 40px rgba(121,162,248,0.4);
+  box-shadow: 0 0 30px rgba(121,162,248,0.4);
   border-radius: 5px;
   padding: 40px 10px 40px 10px;
   background-color: white;
+}
+
+.auth-block:hover{
+  box-shadow: 0 0 40px rgba(121,162,248,0.5);
+}
+
+.chosen-role{
+  box-shadow: 0 0 40px rgba(121,162,248,0.65);
 }
 
 .auth-button-label{
