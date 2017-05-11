@@ -13,5 +13,6 @@ FactoryGirl.define do
     city "MyString"
     price_per_day 13.37
     price_per_month 148.8
+    association :host, factory: :host
   end
 end
