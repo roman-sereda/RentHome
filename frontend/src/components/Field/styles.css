@@ -11,14 +11,6 @@
   padding: 30px 40px 10px 40px;
 }
 
-.search-bar-input{
-  outline: none;
-  color: #7aa2f8;
-  border-radius: 25px;
-  padding: 10px 20px 10px 20px;
-  border: 2px solid #f1f4fe;
-}
-
 .search-calendar{
   margin-left: 15px;
   display: inline-block;
