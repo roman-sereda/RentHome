@@ -52,7 +52,7 @@ class Calendar extends Component{
       }
       else{
         rightSelectedDate = "Виберіть дату виїзду"
-        store.dispatch(setDateDeparture(null))
+        this.setPropsDate(null)
       }
 
       this.setChoisedDate(rightSelectedDate)
