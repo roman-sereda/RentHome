@@ -26,4 +26,4 @@ tmux-client-2623.log
 tmux-server-2625.log
 
 # Ignore application configuration
-/config/application.yml
+# /config/application.yml
