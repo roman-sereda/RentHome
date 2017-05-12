@@ -1,5 +1,7 @@
 class HousesController < BaseController
+  before_action :authenticate_host!, except: [:show, :search]
   before_action :set_house, only: [:show, :update, :destroy]
+  before_action :authenticate_associated_host, only: [:update, :destroy]
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_house
 
   def search
@@ -12,7 +14,7 @@ class HousesController < BaseController
   end
 
   def create
-    house  = House.new(house_params)
+    house = current_host.houses.new(house_params)
     if house.save
       render json: { house: house }, status: 201
     else
@@ -36,14 +38,15 @@ class HousesController < BaseController
   private
 
   def house_params
-    params.require(:house).permit(:floor, :rent_start, :rent_end, :rooms, :city,
-      :conditioner, :parking, :animals_allowed, :wi_fi, :heating, :price_per_day,
-      :price_per_month)
+    params.require(:house).permit(:floor, :rent_start,
+    :rent_end, :rooms, :city, :conditioner, :parking, :animals_allowed,
+    :wi_fi, :heating, :price_per_day, :price_per_month)
   end
 
   def filters
-    params.require(:filters).permit(:floor, :rent_start, :rent_end, :rooms, :city,
-      :conditioner, :parking, :animals_allowed, :wi_fi, :heating) if params[:filters]
+    params.require(:filters).permit(:floor, :rent_start,
+    :rent_end, :rooms, :city, :conditioner, :parking, :animals_allowed,
+      :wi_fi, :heating) if params[:filters]
   end
 
   def set_house
@@ -51,7 +54,15 @@ class HousesController < BaseController
   end
 
   def invalid_house
-    render json: { errors: { id: ["Wrong house ID provided"] }}, status: 422
+    render json: { errors: { id: ["Wrong house ID provided"] }},
+      status: 422
+  end
+
+  def authenticate_associated_host
+    unless @house.host.id == current_host.id
+      render json: { errors: { id: ["It`s not your house"] }},
+        status: 401
+    end
   end
 
 end

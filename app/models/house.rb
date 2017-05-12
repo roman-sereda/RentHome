@@ -1,6 +1,8 @@
 class House < ApplicationRecord
   is_impressionable
 
+  belongs_to :host
+
   validates_presence_of :floor, :rent_start, :rent_end, :rooms, :city
 
   validates :floor, numericality: { greater_than_or_equal_to: 0 }
