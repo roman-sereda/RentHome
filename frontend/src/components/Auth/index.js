@@ -8,7 +8,6 @@ import SignIn from './SignInForm'
 export default class Auth extends Component {
 
   componentDidMount(){
-    console.log( this.props.route.auth )
     this.addPressButtonEffect( this.props.routes[2].auth )
     window.addEventListener('click', this.handleClick)
   }
