@@ -13,22 +13,72 @@
   margin: 0 auto;
   width: 70%;
   display: table;
-  padding: 10px 0 10px 0;
+  padding: 10px 0 0 0;
 }
 
-.cell{
+.header-cell{
   display: table-cell;
   vertical-align: middle;
 }
 
 .header-links-wrapper{
-  padding: 0 0 0 30px;
+  padding: 0 0 0 2px;
 }
 
-.auth-buttons{
+.header-auth-buttons{
   text-align: center;
 }
 
-.auth-button{
+.header-auth-button{
   padding-bottom: 10px;
+}
+
+
+
+/* mob */
+
+.header-image-wrapper{
+ text-align: center;
+}
+
+.header-mob{
+  width: 100%;
+  display: table;
+  max-height: 50px;
+  padding: 10px 5px 10px 5px;
+  box-shadow:  0 0 15px rgba(0,0,0,0.2);
+}
+
+.header-navbar-button-wrapper{
+  text-align: right;
+  padding-right: 10px;
+}
+
+.header-navbar-button-wrapper-search{
+  text-align: left;
+}
+
+.header-navbar-button{
+  width: 50px;
+  height: 50px;
+}
+
+.header-links-wrapper-mob{
+  transition: all 0.25s ease-out;
+  transition: all 0.25s ease-in;
+  padding: 25px 15px 25px 15px;
+  display: block;
+  position: fixed;
+  right: -100vw;
+  top: 0;
+  z-index: 99999999999999999;
+  width: 80%;
+  height: 100vh;
+  background-color: rgba(255,255,255,0.9);
+}
+
+.mob-el{
+  font-size: 25px;
+  margin-top:
+
 }

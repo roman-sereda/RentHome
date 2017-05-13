@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import styles from './styles.css'
 
 import Button from '../Button'
+import MainHeader from './MainHeader'
+import MobileHeader from './MobileHeader'
 
 const links = [
   ['Довготермінова оренда', '/#'],
@@ -10,28 +12,26 @@ const links = [
   ['Зняти кімнату', '/#']
 ]
 
+const header_props = {
+  links: links,
+}
+
 export default class Header extends Component{
+
+  isMobile(){
+    console.log('ok')
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+       return true
+    }
+    return false
+  }
+
   render(){
+    console.log('fuck you')
     return(
-      <div className = 'header full-width'>
-        <span className = 'header-image-wrapper cell'>
-          <img src = 'header-logo.png' className = 'header-image' />
-        </span>
-        <span className = 'header-links-wrapper cell' >
-          { links.map((link, index) => {
-            return(
-              <span className = 'blue-text' key = { link[0]} >
-                { index == 0 ? null : <span className = 'separator' >|</span>}
-                <span>{ link[0] }</span>
-              </span>
-            )
-          })}
-        </span>
-        <span className = 'auth-buttons cell'>
-          <span className = 'header-auth-button'><Button link = '/auth/signup' label = 'Зареєструватися' /></span>
-          <span className = 'header-auth-button'><Button link = '/auth/signin' label = 'Увійти' /></span>
-        </span>
-      </div>
+       this.isMobile() ?
+        <MobileHeader {...header_props} /> :
+        <MainHeader {...header_props} />
     )
   }
 }
