@@ -1,0 +1,14 @@
+class CreateOrders < ActiveRecord::Migration[5.0]
+  def change
+    create_table :orders do |t|
+      t.references :guest, foreign_key: true
+      t.references :house, foreign_key: true
+      t.date :start_time
+      t.date :end_time
+      t.boolean :paid
+      t.decimal :total_price
+
+      t.timestamps
+    end
+  end
+end

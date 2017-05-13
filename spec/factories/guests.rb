@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :guest do
     name      "guestName"
     surname   "guestSurname"
-    email     "guest@example.com"
+    sequence(:email) {|n| "email#{n}@factory.com" }
     password  "password"
     city      "Zdolbuniv"
     country   "Ukraine"
