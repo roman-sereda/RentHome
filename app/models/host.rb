@@ -9,8 +9,8 @@ class Host < ActiveRecord::Base
   has_one :subscription, dependent: :destroy
   has_many :orders, through: :houses
 
-  validates :name, presence: true
-  validates :surname, presence: true
+  # validates :name, presence: true
+  # validates :surname, presence: true
 
   def subscribed?
     return true if subscription && subscription.end_time >= Date.today
