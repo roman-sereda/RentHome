@@ -10,7 +10,7 @@
 #   stripe_api_key: sk_live_EeHnL644i6zo4Iyq4v1KdV9H
 #   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
 
-GOOGLE_KEY: '585927810700-l5ls9eg7inhj3chl6jstgnkbq8umdl2b'
+GOOGLE_KEY: '585927810700-l5ls9eg7inhj3chl6jstgnkbq8umdl2b.apps.googleusercontent.com'
 GOOGLE_SECRET: 'O7Mi0XNJ_VpHGKieBQsLMa-l'
 FACEBOOK_KEY: '1283139631798911'
 FACEBOOK_SECRET: 'a35c843f148c3190e4d1fbe98e6c5998'
