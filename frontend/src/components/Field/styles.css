@@ -3,15 +3,15 @@
 .search-bar{
   border-radius: 12px;
   background-color: white;
-  margin: -130px 15px 10px 15px;
-  max-height: 100px;
-  position: relative;
+  margin: -160px 15px 50px 15px;
   box-shadow: 0 0 60px rgba(121,162,248,0.2);
-  z-index: 999;
+  z-index: 9999999;
+  max-height: 150px;
   padding: 30px 40px 10px 40px;
+  text-align: center;
 }
 
 .search-calendar{
-  margin-left: 15px;
+  margin: 10px;
   display: inline-block;
 }
