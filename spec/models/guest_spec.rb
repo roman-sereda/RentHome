@@ -14,6 +14,8 @@ RSpec.describe Guest, type: :model do
   it { should respond_to(:country) }
   it { should respond_to(:image) }
 
+  it { should have_many :orders }
+
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:surname) }
   it { should validate_presence_of(:email) }

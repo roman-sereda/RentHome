@@ -26,6 +26,7 @@ RSpec.describe House, type: :model do
   it { should validate_presence_of(:city) }
 
   it { should belong_to(:host) }
+  it { should have_many(:orders).dependent(:destroy) }
 
   it { should validate_numericality_of(:floor)
                 .is_greater_than_or_equal_to(0) }

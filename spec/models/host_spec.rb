@@ -24,6 +24,7 @@ RSpec.describe Host, type: :model do
 
   it { should have_many(:houses).dependent(:destroy) }
   it { should have_one(:subscription).dependent(:destroy) }
+  it { should have_many(:orders).through(:houses) }
 
   it { should be_valid }
 
