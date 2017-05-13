@@ -3,10 +3,16 @@ require "rails_helper"
 RSpec.describe HousesController, type: :controller do
   include Devise::Test::ControllerHelpers
 
-  let(:host) { create(:host) }
-  let(:wrong_house) { create(:house) }
-  let(:proper_house) { create(:house, host: host) }
+  let(:host) { create :host }
+  let(:wrong_house) { create :house }
+  let(:proper_house) { create :house, host: host }
   let(:house_count) { House.count }
+  let(:subscription) { create :subscription, host: host }
+  let(:max_free_houses) do
+    5.times do |n|
+      create :house, host: host
+    end
+  end
 
   describe "GET #show" do
     before do
@@ -31,32 +37,52 @@ RSpec.describe HousesController, type: :controller do
         sign_in host, scope: :host
       end
 
-      context "when is created successfully" do
+      context "when host is subscribed" do
         before do
-          house_count
-          post :create, params: { house: attributes_for(:house) }
+          subscription
+          max_free_houses
         end
 
-        it { should respond_with 201 }
+        context "when is created successfully" do
+          before do
+            house_count
+            post :create, params: { house: attributes_for(:house) }
+          end
 
-        it "creates new house" do
-          expect(House.count).to eql house_count + 1
+          it { should respond_with 201 }
+
+          it "creates new house" do
+            expect(House.count).to eql house_count + 1
+          end
+
+          it "returns new house" do
+            expect(json_response[:house][:city]).to eql House.last.city
+          end
         end
 
-        it "should return new house" do
-          expect(json_response[:house][:city]).to eql House.last.city
+        context "when is not created" do
+          before do
+            post :create, params: { house: attributes_for(:house, city: nil) }
+          end
+
+          it { should respond_with 422 }
+
+          it "returns errors" do
+            expect(json_response[:errors]).to be_truthy
+          end
         end
       end
 
-      context "when is not created" do
+      context "when host is not subscribed" do
         before do
-          post :create, params: { house: attributes_for(:house, city: nil) }
+          max_free_houses
+          post :create, params: { house: attributes_for(:house) }
         end
 
-        it { should respond_with 422 }
+        it { should respond_with :unprocessable_entity }
 
         it "returns errors" do
-          expect(json_response).to have_key(:errors)
+          expect(json_response[:errors]).to be_truthy
         end
       end
     end
