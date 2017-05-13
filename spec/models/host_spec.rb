@@ -1,9 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Guest, type: :model do
-  before { @host = FactoryGirl.build(:host) }
-
-  subject { @host }
+RSpec.describe Host, type: :model do
+  subject { build(:host) }
 
   it { should respond_to(:name) }
   it { should respond_to(:nickname) }
@@ -28,4 +26,26 @@ RSpec.describe Guest, type: :model do
   it { should have_one(:subscription).dependent(:destroy) }
 
   it { should be_valid }
+
+  context "when is subscribed" do
+    context "when subscription is valid" do
+      it "returns true" do
+        create(:subscription, host: subject)
+        expect(subject.subscribed?).to be true
+      end
+    end
+
+    context "when subscription is invalid" do
+      it "returns nil" do
+        create(:subscription, host: subject, end_time: Date.yesterday)
+        expect(subject.subscribed?).to be nil
+      end
+    end
+  end
+
+  context "when is not subscribed" do
+    it "returns nil" do
+      expect(subject.subscribed?).to be nil
+    end
+  end
 end

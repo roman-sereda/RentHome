@@ -10,4 +10,8 @@ class Host < ActiveRecord::Base
 
   validates :name, presence: true
   validates :surname, presence: true
+
+  def subscribed?
+    return true if subscription && subscription.end_time >= Date.today
+  end
 end
