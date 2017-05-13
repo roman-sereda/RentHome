@@ -5,6 +5,6 @@ class Guest < ActiveRecord::Base
           :confirmable, :omniauthable
   include DeviseTokenAuth::Concerns::User
 
-  validates :name, presence: true
-  validates :surname, presence: true
+  # validates :name, presence: true
+  # validates :surname, presence: true
 end
