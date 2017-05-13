@@ -16,6 +16,7 @@ gem 'omniauth-google-oauth2'
 gem 'kaminari'
 gem 'impressionist'
 gem 'stripe'
+gem 'figaro'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'

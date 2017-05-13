@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 
 import Button from '../Button'
 
+import { createUser,
+         createSessionWithFacebook,
+         createUserWithGoogle } from '../../auth/authRequest'
+
 export default class SignUp extends Component {
   constructor(props){
     super(props)
@@ -17,6 +21,18 @@ export default class SignUp extends Component {
     document.getElementById('search').className = 'auth-block blue-text'
     document.getElementById('rent').className = 'auth-block blue-text'
     document.getElementById(role).className = 'auth-block blue-text chosen-role'
+  }
+
+  registrationEmail(){
+
+    let dataUser = {}
+
+    console.log(this.refs['email-input'].value)
+
+    dataUser.email =                  this.refs['email-input'].value
+    dataUser.password =               this.refs['pass-input'].value
+
+    createUser(dataUser)
   }
 
   render(){
@@ -36,12 +52,12 @@ export default class SignUp extends Component {
             </div>
           </div>
         </div>
-        <div className = 'auth-social-button'><Button label = 'Увійти через Facebook' link = '/#' /></div>
-        <div className = 'auth-social-button'><Button label = 'Увійти через Goole+' link = '/#' /></div>
+        <div className = 'auth-social-button'><Button label = 'Увійти через Facebook' handleClick = {() => createSessionWithFacebook() } /></div>
+        <div className = 'auth-social-button'><Button label = 'Увійти через Google+' handleClick = {() => createUserWithGoogle() } /></div>
         <div className = 'black-text auth-separator-text'> Або </div>
-        <div className = 'auth-input' ><input placeholder = 'Email' className = 'email-input input' /></div>
-        <div className = 'auth-input' ><input placeholder = 'Пароль' className = 'pass-input input' /></div>
-        <div className = 'auth-social-button'><Button label = 'Зареєструватися' link = '/#' /></div>
+        <div className = 'auth-input' ><input placeholder = 'Email' className = 'email-input input' ref='email-input' /></div>
+        <div className = 'auth-input' ><input placeholder = 'Пароль' className = 'pass-input input' ref='pass-input' /></div>
+        <div className = 'auth-social-button' ><Button label = 'Зареєструватися' handleClick = {() => this.registrationEmail()} /></div>
       </div>
     )
   }
