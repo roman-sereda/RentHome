@@ -1,4 +1,4 @@
-body{
+html, body{
   padding: 0;
   margin: 0;
   font-family: Arial;
@@ -20,6 +20,11 @@ body{
 
 .red-text{
   color: red;
+}
+
+.row{
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 .text-left{
@@ -44,3 +49,5 @@ body{
 :-moz-placeholder{ color: #7aa2f8; }
 ::-moz-placeholder{ color: #7aa2f8; }
 ::-ms-input-placeholder{ color: #7aa2f8; }
+
+-webkit-box-sizing: border-box;

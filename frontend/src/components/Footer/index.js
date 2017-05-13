@@ -44,8 +44,8 @@ const feedback_conf = {
 export default class Footer extends Component{
   render(){
     return(
-      <div className = 'footer full-width'>
-        <div className = 'footer-top full-width'>
+      <div className = 'footer'>
+        <div className = 'footer-top'>
           <Row>
             <Col {...logo_conf}>
               <span className = 'footer-in-wrapper'>
