@@ -25,6 +25,7 @@ RSpec.describe Guest, type: :model do
   it { should_not allow_value('exampledomain.com').for(:email) }
 
   it { should have_many(:houses).dependent(:destroy) }
+  it { should have_one(:subscription).dependent(:destroy) }
 
   it { should be_valid }
 end

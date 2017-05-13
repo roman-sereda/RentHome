@@ -6,6 +6,7 @@ class Host < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   has_many :houses, dependent: :destroy
+  has_one :subscription, dependent: :destroy
 
   validates :name, presence: true
   validates :surname, presence: true
