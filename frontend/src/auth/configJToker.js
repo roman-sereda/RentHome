@@ -1,15 +1,15 @@
 import Auth from 'j-toker';
 
-Auth.configure({
+export const BASE_CONFIG = Auth.configure({
   apiUrl:                'http://localhost:3000',
-  signOutPath:           '/auth/sign_out',
-  emailSignInPath:       '/auth/sign_in',
-  emailRegistrationPath: '/auth',
-  accountUpdatePath:     '/auth',
-  accountDeletePath:     '/auth',
-  passwordResetPath:     '/auth/password',
-  passwordUpdatePath:    '/auth/password',
-  tokenValidationPath:   '/auth/validate_token',
+  signOutPath:           '/host_auth/sign_out',
+  emailSignInPath:       '/host_auth/sign_in',
+  emailRegistrationPath: '/host_auth',
+  accountUpdatePath:     '/host_auth',
+  accountDeletePath:     '/host_auth',
+  passwordResetPath:     '/host_auth/password',
+  passwordUpdatePath:    '/host_auth/password',
+  tokenValidationPath:   '/host_auth/validate_token',
   proxyIf:               function() { return false; },
   proxyUrl:              '/proxy',
   validateOnPageLoad:    false,
@@ -52,7 +52,7 @@ Auth.configure({
   },
 
   authProviderPaths: {
-    facebook:  '/omniauth/facebook',
-    google:    '/omniauth/google_oauth2'
+    facebook:  '/host_auth/facebook',
+    google:    '/host_auth/google_oauth2'
   }
 });

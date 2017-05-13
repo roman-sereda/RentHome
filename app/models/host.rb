@@ -7,6 +7,6 @@ class Host < ActiveRecord::Base
 
   has_many :houses, dependent: :destroy
 
-  validates :name, presence: true
-  validates :surname, presence: true
+  # validates :name, presence: true
+  # validates :surname, presence: true
 end
