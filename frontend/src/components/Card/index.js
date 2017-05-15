@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 import styles from './styles.css'
 
 import Button from '../Button'
@@ -9,7 +10,7 @@ export default class Card extends Component{
     return(
       <div className = 'card'>
         <div className = 'img-txt'>
-          <div className = 'description black-text'>Трихкімнатна квартира в центрі Рівного</div>
+          <Link to = '/house/1'><div className = 'description black-text'>Трихкімнатна квартира в центрі Рівного</div></Link>
           <div className = 'town'>м.Рівне</div>
           <div className = 'card-image-wrapper'>
             <img src = 'https://static1.comicvine.com/uploads/original/11128/111283068/5260519-franku+%28kys%29.jpg' className = 'card-image' />

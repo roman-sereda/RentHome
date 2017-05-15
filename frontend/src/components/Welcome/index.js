@@ -3,11 +3,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid'
 import styles from './styles.css'
 
 import Button from '../Button'
-import Footer from '../Footer'
-import Header from '../Header'
 import Card from '../Card'
-import Carousel from '../Carousel'
-import Field from '../Field'
 
 const col_conf = {
   lg: 4, md: 4, sm: 6, xs: 12
@@ -26,12 +22,7 @@ export default class WelcomePage extends Component{
   render(){
     return(
       <span>
-        { this.props.children }
-        <Header />
-        <Carousel />
-        <Field />
         <div className = 'middle-wave'></div>
-        <Grid>
           <Row>
             <Col {...col_conf} ><Card card_type = 'img-txt' /></Col>
             <Col {...col_conf} ><Card card_type = 'img-txt' /></Col>
@@ -49,8 +40,6 @@ export default class WelcomePage extends Component{
           <div className = 'show-all-button'>
             <Button label = 'Переглянути всі варіанти' white />
           </div>
-        </Grid>
-        <Footer />
       </span>
     )
   }

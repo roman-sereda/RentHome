@@ -4,16 +4,21 @@ import { browserHistory } from 'react-router'
 import { Router, Route } from 'react-router'
 
 import WelcomePage      from './components/Welcome'
+import App              from './components/App'
 import Auth             from './components/Auth'
 import SignUp           from './components/Auth/SignUpForm'
 import SignIn           from './components/Auth/SignInForm'
+import House            from './components/House'
 
 export default (
   <Router history = { browserHistory} >
-    <Route path="/" component={ WelcomePage } >
-      <Route path="/auth" component={ Auth } >
-        <Route path = '/auth/signin' component={ SignIn } auth = 'signin' />
-        <Route path = '/auth/signup' component={ SignUp } auth = 'signup' />
+    <Route component = { App } >
+      <Route path = "/house/:id" component = { House } />
+      <Route path = "/" component={ WelcomePage } >
+        <Route path = "/auth" component={ Auth } >
+          <Route path = '/auth/signin' component={ SignIn } auth = 'signin' />
+          <Route path = '/auth/signup' component={ SignUp } auth = 'signup' />
+        </Route>
       </Route>
     </Route>
   </Router>
