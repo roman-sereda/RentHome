@@ -16,6 +16,7 @@ RSpec.describe House, type: :model do
   it { should respond_to :city }
   it { should respond_to :price_per_day }
   it { should respond_to :price_per_month }
+  it { should respond_to :description }
 
   it { should validate_presence_of :floor }
   it { should validate_presence_of :rent_start }

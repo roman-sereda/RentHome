@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170505064905) do
+ActiveRecord::Schema.define(version: 20170515081037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,9 @@ ActiveRecord::Schema.define(version: 20170505064905) do
     t.datetime "updated_at",      null: false
     t.decimal  "price_per_day"
     t.decimal  "price_per_month"
+    t.integer  "host_id"
+    t.text     "description"
+    t.index ["host_id"], name: "index_houses_on_host_id", using: :btree
   end
 
   create_table "impressions", force: :cascade do |t|
@@ -127,4 +130,31 @@ ActiveRecord::Schema.define(version: 20170505064905) do
     t.index ["user_id"], name: "index_impressions_on_user_id", using: :btree
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer  "guest_id"
+    t.integer  "house_id"
+    t.date     "start_time"
+    t.date     "end_time"
+    t.boolean  "paid"
+    t.decimal  "total_price"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["guest_id"], name: "index_orders_on_guest_id", using: :btree
+    t.index ["house_id"], name: "index_orders_on_house_id", using: :btree
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.date     "end_time"
+    t.integer  "host_id"
+    t.string   "email"
+    t.string   "card_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["host_id"], name: "index_subscriptions_on_host_id", using: :btree
+  end
+
+  add_foreign_key "houses", "hosts"
+  add_foreign_key "orders", "guests"
+  add_foreign_key "orders", "houses"
+  add_foreign_key "subscriptions", "hosts"
 end
