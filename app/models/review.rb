@@ -1,5 +1,6 @@
 class Review < ApplicationRecord
   belongs_to :guest
+  belongs_to :house
 
   validates_presence_of :rating
   validates :rating, numericality: { greater_than_or_equal_to: 0,
