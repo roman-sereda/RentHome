@@ -92,7 +92,7 @@ RSpec.describe HousesController, type: :controller do
         post :create, params: { house: attributes_for(:house) }
       end
 
-      it { should respond_with 401}
+      it { should respond_with :unauthorized }
     end
   end
 

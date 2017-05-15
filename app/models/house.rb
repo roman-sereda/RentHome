@@ -1,6 +1,7 @@
 class House < ApplicationRecord
   belongs_to :host
   has_many :orders, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   validates_presence_of :floor, :rent_start, :rent_end, :rooms, :city
   validates :floor, numericality: { greater_than_or_equal_to: 0 }

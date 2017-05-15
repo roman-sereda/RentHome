@@ -55,6 +55,10 @@ RSpec.describe House, type: :model do
 
   it { should validate_length_of(:description).is_at_most(500) }
 
+  it { should belong_to :host }
+
+  it { should have_many(:reviews).dependent(:destroy) }
+
   it "validates if rent end is later than rent start" do
     subject.rent_start = "2017-05-04"
     subject.rent_end = "2017-05-03"
