@@ -36,8 +36,6 @@ class Calendar extends Component{
 
     this.setNameOfMonth(this.Month)
 
-    store.dispatch(setDateArrival(new Date(this.Year, this.Month, this.Day)))
-
     this.setCalendarBody({selectedDate: [null]})
 
   }
@@ -214,11 +212,16 @@ class Calendar extends Component{
           thisMonthEnd = true
         }
 
-        if (dateArrival <= new Date(this.Year, numberMonth, numberDay) && this.props.type == "Departure"){
+        if (dateArrival !== null && dateArrival <= new Date(this.Year, numberMonth, numberDay) && this.props.type == "Departure"){
           unavailableDay = false
         }
-        else if(this.todayDate <= new Date(this.Year, numberMonth, numberDay) && this.props.type == "Arrival"){
+        else if(this.todayDate <= new Date(this.Year, numberMonth, numberDay)){
+
           unavailableDay = false
+
+          if (this.props.type == "Departure" && dateArrival !== null){
+            unavailableDay = true
+          }
         }
 
         if (week == 5 && day == 7 && thisMonthEnd == false){

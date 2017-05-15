@@ -6,7 +6,7 @@ const initialState = {
   dateOfDeparture: null
 }
 
-const user = function(state = initialState, action) {
+const calendar = function(state = initialState, action) {
 
   switch(action.type) {
 
@@ -23,4 +23,4 @@ const user = function(state = initialState, action) {
   return state;
 }
 
-export default user;
+export default calendar;
