@@ -4,38 +4,56 @@ RSpec.describe House, type: :model do
   subject { build :house }
 
   it { should respond_to :floor }
+
   it { should respond_to :parking }
+
   it { should respond_to :heating }
+
   it { should respond_to :kitchen }
+
   it { should respond_to :conditioner }
+
   it { should respond_to :animals_allowed }
+
   it { should respond_to :wi_fi }
+
   it { should respond_to :rent_start }
+
   it { should respond_to :rent_end }
+
   it { should respond_to :rooms }
+
   it { should respond_to :city }
+
   it { should respond_to :price_per_day }
+
   it { should respond_to :price_per_month }
+
   it { should respond_to :description }
 
   it { should validate_presence_of :floor }
-  it { should validate_presence_of :rent_start }
-  it { should validate_presence_of :rent_end }
-  it { should validate_presence_of :rooms }
-  it { should validate_presence_of :city }
 
-  it { should belong_to(:host) }
-  it { should have_many(:orders).dependent(:destroy) }
+  it { should validate_presence_of :rent_start }
+
+  it { should validate_presence_of :rent_end }
+
+  it { should validate_presence_of :rooms }
+
+  it { should validate_presence_of :city }
 
   it { should validate_numericality_of(:floor)
                 .is_greater_than_or_equal_to(0) }
+
   it { should validate_numericality_of(:rooms)
                 .is_greater_than(0) }
 
   it { should validate_numericality_of(:price_per_day)
                 .is_greater_than_or_equal_to(0.01) }
+
   it { should validate_numericality_of(:price_per_month)
                 .is_greater_than_or_equal_to(0.01) }
+
+  it { should validate_length_of(:description).is_at_most(500) }
 
   it "validates if rent end is later than rent start" do
     subject.rent_start = "2017-05-04"
