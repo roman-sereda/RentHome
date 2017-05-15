@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   mount_devise_token_auth_for 'Guest', at: 'guest_auth'
 
-  resources :guests, except: [:index]
+  resources :guests, except: [:index, :new, :edit]
 
   resources :hosts
 
@@ -15,7 +15,8 @@ Rails.application.routes.draw do
       get "create", to: "subscription#create"
   end
 
-  resources :houses, except: [:index] do
+  resources :houses, except: [:index, :new, :edit] do
+    resources :reviews, only: [:create, :index]
     get "search", on: :collection
   end
 end
