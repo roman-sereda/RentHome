@@ -24,7 +24,7 @@ const txt_conf = {
 class WelcomePage extends Component{
 
   componentDidMount(){
-    this.props.getHouses( 'loh' )
+    this.props.getHouses( null )
   }
 
   render(){
