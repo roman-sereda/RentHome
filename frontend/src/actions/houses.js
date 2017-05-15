@@ -4,9 +4,9 @@ import axios from 'axios'
 export function getHouses( filters ){
   return dispatch => {
     dispatch(getHousesRequest())
-    return axios.post('/houses/search', { filters: { parking: true } })
+    return axios.get('/houses/search', { filters: null })
       .then(response => dispatch(getHousesSuccess( response.data.houses )))
-      .catch(error => dispatch(fetchingFailed( response.data.errors )))
+      .catch(error => dispatch(fetchingFailure( response.data.errors )))
 }}
 
 export const getHousesRequest = () => ({ type: types.RECEIVE_HOUSES_REQUEST })
