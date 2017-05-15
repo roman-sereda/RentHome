@@ -7,6 +7,7 @@ class House < ApplicationRecord
   validates :rooms, numericality: { greater_than: 0 }
   validates :price_per_day, numericality: { greater_than_or_equal_to: 0.01 }, allow_blank: true
   validates :price_per_month, numericality: { greater_than_or_equal_to: 0.01 }, allow_blank: true
+  validates :description, length: { maximum: 500 }
   validate :if_rent_period_is_valid
   validate :if_there_is_at_least_one_price
 

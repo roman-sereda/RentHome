@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170513102603) do
+ActiveRecord::Schema.define(version: 20170515081037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20170513102603) do
     t.decimal  "price_per_day"
     t.decimal  "price_per_month"
     t.integer  "host_id"
+    t.text     "description"
     t.index ["host_id"], name: "index_houses_on_host_id", using: :btree
   end
 
