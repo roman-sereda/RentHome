@@ -22,7 +22,6 @@ export default class WelcomePage extends Component{
   render(){
     return(
       <span>
-
         <div className = 'middle-wave'></div>
           <Row>
             <Col {...col_conf} ><Card card_type = 'img-txt' /></Col>

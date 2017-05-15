@@ -45,6 +45,10 @@ html, body{
   border: 2px solid #f1f4fe;
 }
 
+.left{
+  text-align: left;
+}
+
 a {
   text-decoration: none;
 }
