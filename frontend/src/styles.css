@@ -45,9 +45,18 @@ html, body{
   border: 2px solid #f1f4fe;
 }
 
+a {
+  text-decoration: none;
+}
+
 ::-webkit-input-placeholder{ color: #7aa2f8; }
 :-moz-placeholder{ color: #7aa2f8; }
 ::-moz-placeholder{ color: #7aa2f8; }
 ::-ms-input-placeholder{ color: #7aa2f8; }
+
+.col-xs, .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-offset-0, .col-xs-offset-1, .col-xs-offset-2, .col-xs-offset-3, .col-xs-offset-4, .col-xs-offset-5, .col-xs-offset-6, .col-xs-offset-7, .col-xs-offset-8, .col-xs-offset-9, .col-xs-offset-10, .col-xs-offset-11, .col-xs-offset-12{
+  padding-left: 0;
+  padding-right: 0;
+}
 
 -webkit-box-sizing: border-box;
