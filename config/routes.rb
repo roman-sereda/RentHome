@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   end
 
   resources :houses, except: [:index] do
-    get "search", on: :collection
+    post "search", on: :collection
   end
 end
