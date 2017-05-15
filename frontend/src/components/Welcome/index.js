@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import styles from './styles.css'
+
+import { getHouses } from '../../actions/houses'
 
 import Button from '../Button'
 import Card from '../Card'
@@ -18,7 +21,12 @@ const txt_conf = {
   lgOffset: 1, mdOffset: 1
 }
 
-export default class WelcomePage extends Component{
+class WelcomePage extends Component{
+
+  componentDidMount(){
+    this.props.getHouses( 'loh' )
+  }
+
   render(){
     return(
       <span>
@@ -44,3 +52,14 @@ export default class WelcomePage extends Component{
     )
   }
 }
+
+const mapStateToProps = state => ({
+})
+
+const mapDispatchToProps = dispatch => ({
+  getHouses: ( filters ) => {
+    dispatch(getHouses( filters ))
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(WelcomePage);
