@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170515081037) do
+ActiveRecord::Schema.define(version: 20170515101024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,6 +143,15 @@ ActiveRecord::Schema.define(version: 20170515081037) do
     t.index ["house_id"], name: "index_orders_on_house_id", using: :btree
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.text     "text"
+    t.integer  "rating"
+    t.integer  "guest_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["guest_id"], name: "index_reviews_on_guest_id", using: :btree
+  end
+
   create_table "subscriptions", force: :cascade do |t|
     t.date     "end_time"
     t.integer  "host_id"
@@ -156,5 +165,6 @@ ActiveRecord::Schema.define(version: 20170515081037) do
   add_foreign_key "houses", "hosts"
   add_foreign_key "orders", "guests"
   add_foreign_key "orders", "houses"
+  add_foreign_key "reviews", "guests"
   add_foreign_key "subscriptions", "hosts"
 end

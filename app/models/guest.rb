@@ -1,5 +1,6 @@
 class Guest < ActiveRecord::Base
   has_many :orders
+  has_many :reviews
 
   validates :name, presence: true
   validates :surname, presence: true
