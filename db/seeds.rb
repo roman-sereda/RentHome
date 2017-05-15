@@ -34,7 +34,7 @@ end
   end
 end
 
-Host.first.subscription.create(
+Host.first.create_subscription(
   card_token: 1337,
   email: FFaker::Internet.free_email,
   end_time: Date.today.next_month
