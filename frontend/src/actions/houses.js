@@ -6,9 +6,9 @@ export function getHouses( filters ){
     dispatch(getHousesRequest())
     return axios.get('/houses/search', { filters: null })
       .then(response => dispatch(getHousesSuccess( response.data.houses )))
-      .catch(error => dispatch(fetchingFailure( response.data.errors )))
+      .catch(error => dispatch(getHousesFailure( response.data.errors )))
 }}
 
 export const getHousesRequest = () => ({ type: types.RECEIVE_HOUSES_REQUEST })
-export const getHousesSuccess = houses => ({ type: types.RECEIVE_HOUSES_SUCCESS, houses })
+export const getHousesSuccess = houses => ({ type: types.RECEIVE_HOUSES_SUCCESS, houses: houses })
 export const getHousesFailure = errors => ({ type: types.RECEIVE_HOUSES_FAILURE, errors })

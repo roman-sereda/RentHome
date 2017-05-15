@@ -7,6 +7,7 @@ import { getHouses } from '../../actions/houses'
 
 import Button from '../Button'
 import Card from '../Card'
+import Loading from '../Loading'
 
 const col_conf = {
   lg: 4, md: 4, sm: 6, xs: 12
@@ -23,28 +24,39 @@ const txt_conf = {
 
 class WelcomePage extends Component{
 
-  componentDidMount(){
+  componentWillMount(){
     this.props.getHouses( null )
   }
 
   render(){
+    console.log(this.props.houses)
     return(
       <span>
         <div className = 'middle-wave'></div>
-          <Row>
-            <Col {...col_conf} ><Card card_type = 'img-txt' /></Col>
-            <Col {...col_conf} ><Card card_type = 'img-txt' /></Col>
-            <Col {...col_conf} ><Card card_type = 'img-txt' /></Col>
-          </Row>
+          {this.props.houses.isFetching ?
+            <Loading /> :
+            <Row>
+              {this.props.houses.slice(0,3).map((house, index) => {
+                  return(
+                    <Col key = { 'card_' + index} {...col_conf} ><Card house = { house } card_type = 'img-txt' /></Col>
+                  )
+                })
+              }
+            </Row>}
           <Row style = {{ marginBottom: '50px', marginTop: '60px'}}>
             <Col {...img_conf} ><Card card_type = 'img' /></Col>
             <Col {...txt_conf} ><Card card_type = 'txt' /></Col>
           </Row>
-          <Row style = {{ marginBottom: '50px', marginTop: '60px'}}>
-            <Col {...col_conf} ><Card card_type = 'img-txt' /></Col>
-            <Col {...col_conf} ><Card card_type = 'img-txt' /></Col>
-            <Col {...col_conf} ><Card card_type = 'img-txt' /></Col>
-          </Row>
+          {this.props.houses.isFetching ?
+            <Loading /> :
+            <Row>
+              {this.props.houses.slice(0,3).map((house, index) => {
+                  return(
+                    <Col key = { 'card_' + index} {...col_conf} ><Card house = { house } card_type = 'img-txt' /></Col>
+                  )
+                })
+              }
+            </Row>}
           <div className = 'show-all-button'>
             <Button label = 'Переглянути всі варіанти' white />
           </div>
@@ -54,6 +66,8 @@ class WelcomePage extends Component{
 }
 
 const mapStateToProps = state => ({
+  houses: state.houses.data,
+  isFetching: state.houses.isFetching
 })
 
 const mapDispatchToProps = dispatch => ({
