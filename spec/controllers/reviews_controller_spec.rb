@@ -5,8 +5,11 @@ RSpec.describe ReviewsController, type: :controller do
   let(:guest) { create :guest, confirmed_at: Date.today }
   let(:house) { create :house }
   let(:reviews) do
-    create :order, guest: guest, house: house
-    10.times { create :review, house: house, guest: guest }
+    10.times do |n|
+      create :order, guest: guest, house: house, start_time: Date.today + n.days,
+        end_time: Date.today + n.days
+      create :review, house: house, guest: guest
+    end
   end
 
   describe "GET #index" do
@@ -28,16 +31,33 @@ RSpec.describe ReviewsController, type: :controller do
         sign_in guest, scope: :guest
       end
 
-      context " when guest visited reviews house" do
-        before do
-          create :order, guest: guest, house: house
-          post :create, params: { house_id: house.id, review: attributes_for(:review) }
+      context "when guest visited reviews house" do
+        context "when guest`s reviews count equal to visits count" do
+          before do
+            create :order, guest: guest, house: house
+            post :create, params: { house_id: house.id, review: attributes_for(:review) }
+            post :create, params: { house_id: house.id, review: attributes_for(:review) }
+          end
+
+          it { should respond_with :unprocessable_entity }
+
+          it "returns error" do
+            expect(json_response[:errors]).to have_key :guest
+          end
+
         end
 
-        it { should respond_with :created }
+        context "when guest`s reviews count less than visits count" do
+          before do
+            create :order, guest: guest, house: house
+            post :create, params: { house_id: house.id, review: attributes_for(:review) }
+          end
 
-        it "returns review" do
-          expect(json_response[:review]).to have_key :text
+          it { should respond_with :created }
+
+          it "returns review" do
+            expect(json_response[:review]).to have_key :text
+          end
         end
       end
 
@@ -49,7 +69,7 @@ RSpec.describe ReviewsController, type: :controller do
         it { respond_with :forbidden }
 
         it "returns errors" do
-          p json_response
+          json_response
           expect(json_response[:errors]).to have_key :guest
         end
       end

@@ -5,7 +5,6 @@ class HousesController < BaseController
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_house
 
   def search
-    p params
     render json: { houses: House.where(filters).page(params[:page]) }
   end
 

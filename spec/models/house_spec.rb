@@ -31,6 +31,8 @@ RSpec.describe House, type: :model do
 
   it { should respond_to :description }
 
+  it { should respond_to(:rating) }
+
   it { should validate_presence_of :floor }
 
   it { should validate_presence_of :rent_start }
