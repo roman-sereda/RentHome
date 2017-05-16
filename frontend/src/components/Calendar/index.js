@@ -274,7 +274,8 @@ class Calendar extends Component{
         <CalendarForm date={this.state.choisedDate}
                       changeMonth={this.changeMonth.bind(this)}
                       NameOfMonth={this.state.nameOfMonth}
-                      Calendar={this.state.calendarBody} />
+                      Calendar={this.state.calendarBody}
+                      style = { this.props.style }/>
       </div>
     )
   }

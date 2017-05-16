@@ -15,10 +15,6 @@ export default (
     <Route component = { App } >
       <Route path = "/house/:id" component = { House } />
       <Route path = "/" component={ WelcomePage } >
-        <Route path = "/auth" component={ Auth } >
-          <Route path = '/auth/signin' component={ SignIn } auth = 'signin' />
-          <Route path = '/auth/signup' component={ SignUp } auth = 'signup' />
-        </Route>
       </Route>
     </Route>
   </Router>

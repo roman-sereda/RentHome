@@ -23,8 +23,8 @@ export default class MainHeader extends Component {
             })}
           </span>
           <span className = 'header-auth-buttons header-cell'>
-            <span className = 'header-auth-button'><Button link = '/auth/signup' label = 'Зареєструватися' /></span>
-            <span className = 'header-auth-button'><Button link = '/auth/signin' label = 'Увійти' /></span>
+            <span className = 'header-auth-button'><Button handleClick = { () => this.props.showAuthPopup('signup') } label = 'Зареєструватися' /></span>
+            <span className = 'header-auth-button'><Button handleClick = { () => this.props.showAuthPopup('signin') } label = 'Увійти' /></span>
           </span>
         </Col>
       </div>
