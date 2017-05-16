@@ -59,8 +59,8 @@ class House extends Component{
             <Col lg  = { 5 }>
               <div className = 'template house-date-picker'>
                 <div className = 'house-title black-text'> Title here</div>
-                <span className = 'search-calendar'><Calendar type='Arrival' style = 'white' /></span>
-                <span className = 'search-calendar'><Calendar type='Departure' style = 'white' /></span>
+                <div className = 'search-calendar'><Calendar type='Arrival' style = 'white' /></div>
+                <div className = 'search-calendar'><Calendar type='Departure' style = 'white' /></div>
                 <Button label = 'Забронювати' /><br /><br />
                 <Button label = 'Зв’ятися з власником' />
                 <div className = 'left blue-text house-price first-price'>Ціна: { price_per_day }грн/добу</div>
