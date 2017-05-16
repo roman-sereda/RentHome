@@ -12,8 +12,8 @@ RSpec.describe Host, type: :model do
   it { should respond_to(:country) }
   it { should respond_to(:image) }
 
-  it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:surname) }
+  # it { should validate_presence_of(:name) }
+  # it { should validate_presence_of(:surname) }
   it { should validate_presence_of(:email) }
   it { should validate_presence_of(:password) }
 
