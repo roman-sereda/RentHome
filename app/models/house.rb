@@ -3,12 +3,17 @@ class House < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :reviews, dependent: :destroy
 
-  validates_presence_of :floor, :rent_start, :rent_end, :rooms, :city
+  validates_presence_of :floor, :rent_start, :rent_end, :rooms, :city, :address,
+    :type_of_building, :sleep_places, :total_area, :title
   validates :floor, numericality: { greater_than_or_equal_to: 0 }
   validates :rooms, numericality: { greater_than: 0 }
   validates :price_per_day, numericality: { greater_than_or_equal_to: 0.01 }, allow_blank: true
   validates :price_per_month, numericality: { greater_than_or_equal_to: 0.01 }, allow_blank: true
+  validates :total_area, numericality: { greater_than_or_equal_to: 0.01 }
+  validates :sleep_places, numericality: { greater_than: 0 }
+  validates :apartment_number, numericality: { greater_than: 0 }, allow_blank: true
   validates :description, length: { maximum: 500 }
+  validates :title, length: { minimum: 5, maximum: 50 }
   validate :if_rent_period_is_valid
   validate :if_there_is_at_least_one_price
 
