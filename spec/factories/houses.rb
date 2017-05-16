@@ -1,5 +1,11 @@
 FactoryGirl.define do
   factory :house do
+    title "house"
+    type_of_building 1
+    address "address"
+    sleep_places 1
+    total_area 10
+    apartment_number 13
     floor 1
     parking true
     kitchen true

@@ -31,7 +31,19 @@ RSpec.describe House, type: :model do
 
   it { should respond_to :description }
 
-  it { should respond_to(:rating) }
+  it { should respond_to :rating }
+
+  it { should respond_to :title }
+
+  it { should respond_to :type_of_building }
+
+  it { should respond_to :sleep_places }
+
+  it { should respond_to :address }
+
+  it { should respond_to :total_area }
+
+  it { should respond_to :apartment_number }
 
   it { should validate_presence_of :floor }
 
@@ -42,6 +54,16 @@ RSpec.describe House, type: :model do
   it { should validate_presence_of :rooms }
 
   it { should validate_presence_of :city }
+
+  it { should validate_presence_of :title }
+
+  it { should validate_presence_of :type_of_building }
+
+  it { should validate_presence_of :sleep_places }
+
+  it { should validate_presence_of :address }
+
+  it { should validate_presence_of :total_area }
 
   it { should validate_numericality_of(:floor)
                 .is_greater_than_or_equal_to(0) }
@@ -55,7 +77,15 @@ RSpec.describe House, type: :model do
   it { should validate_numericality_of(:price_per_month)
                 .is_greater_than_or_equal_to(0.01) }
 
+  it { should validate_numericality_of(:sleep_places).is_greater_than(0) }
+
+  it { should validate_numericality_of(:apartment_number).is_greater_than(0) }
+
+  it { should validate_numericality_of(:total_area).is_greater_than_or_equal_to(0.01) }
+
   it { should validate_length_of(:description).is_at_most(500) }
+
+  it { should validate_length_of(:title).is_at_least(5).is_at_most(50) }
 
   it { should belong_to :host }
 
