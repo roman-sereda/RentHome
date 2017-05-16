@@ -130,7 +130,7 @@ RSpec.describe HousesController, type: :controller do
         end
       end
 
-      context "when try to update wront house" do
+      context "when try to update wrong house" do
         it "returns authentication errors" do
           patch :update, params: { id: create(:house).id,
             house: attributes_for(:house, city: nil)}
@@ -192,9 +192,7 @@ RSpec.describe HousesController, type: :controller do
 
     context "when filter is not provided" do
       before do
-        create(:house)
-        create(:house, city: "new city")
-        create(:house, city: "new city", wi_fi: false)
+        houses
         get :search, params: { page: 1 }
       end
 

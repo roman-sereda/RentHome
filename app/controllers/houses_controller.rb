@@ -40,13 +40,14 @@ class HousesController < BaseController
   def house_params
     params.require(:house).permit(:floor, :rent_start,
     :rent_end, :rooms, :city, :conditioner, :parking, :animals_allowed,
-    :wi_fi, :heating, :price_per_day, :price_per_month)
+    :wi_fi, :heating, :price_per_day, :price_per_month, :type_of_building, :title, :address,
+    :apartment_number, :total_area, :sleep_places)
   end
 
   def filters
     params.require(:filters).permit(:floor, :rent_start,
     :rent_end, :rooms, :city, :conditioner, :parking, :animals_allowed,
-      :wi_fi, :heating) if params[:filters]
+    :type_of_building, :wi_fi, :heating) if params[:filters]
   end
 
   def set_house
