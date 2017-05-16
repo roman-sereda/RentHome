@@ -10,10 +10,12 @@
 }
 
 .header{
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,100,0.2);
   margin: 0 auto;
-  width: 70%;
+  width: 100%;
   display: table;
-  padding: 10px 0 0 0;
+  padding: 10px 5px 5px 5px;
 }
 
 .header-cell{
@@ -22,11 +24,13 @@
 }
 
 .header-links-wrapper{
+  width: 60%;
+  text-align: center;
   padding: 0 0 0 2px;
 }
 
 .header-auth-buttons{
-  text-align: center;
+  text-align: right;
 }
 
 .header-auth-button{
