@@ -11,7 +11,7 @@
 
 .header{
   background-color: white;
-  box-shadow: 0 2px 5px rgba(0,0,100,0.2);
+  box-shadow: 0 2px 5px rgba(0,0,100,0.1);
   margin: 0 auto;
   width: 100%;
   display: table;
