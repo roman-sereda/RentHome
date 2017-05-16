@@ -15,7 +15,7 @@ export default class CalendarForm extends Component{
   render(){
     return(
       <span>
-        <button onClick={() => this.openCalendar()} className="calendar-field" >
+        <button onClick={() => this.openCalendar()} className = { this.props.style == 'blue' ? 'calendar-field' : 'calendar-field cl-white' } >
           <div className = 'calendar-field-left-part'> { this.props.date == null ? this.props.label : this.props.date } </div>
           <div className = 'calendar-field-right-part'> &#9475; &#9650; </div>
         </button>

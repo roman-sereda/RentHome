@@ -30,8 +30,8 @@ export default class Field extends Component{
         <Col {...search_bar_conf} className = { this.isMobile() ? "search-bar-mob" : "search-bar" }>
           <div>
             <input {...input_conf} className = 'input' />
-            <span className = 'search-calendar'><Calendar type='Arrival' /></span>
-            <span className = 'search-calendar'><Calendar type='Departure' /></span>
+            <span className = 'search-calendar'><Calendar type='Arrival' style = 'blue' /></span>
+            <span className = 'search-calendar'><Calendar type='Departure' style = 'blue' /></span>
             <Button label = 'Шукати' />
           </div>
         </Col>

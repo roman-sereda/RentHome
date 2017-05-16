@@ -11,6 +11,12 @@
   cursor: pointer;
 }
 
+.cl-white{
+  width: 100% !important;
+  background: white !important;
+  color: black !important;
+}
+
 .calendar-field:hover{
   box-shadow: 0 0px 10px rgba(50,0,100,0.35);
 }
