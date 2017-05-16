@@ -4,11 +4,11 @@ import axios from 'axios'
 export function getHouses( filters ){
   return dispatch => {
     dispatch(getHousesRequest())
-    return axios.get('/houses/search', { filters: null })
+    return axios.get('/houses/search', { filters: filters })
       .then(response => dispatch(getHousesSuccess( response.data.houses )))
-      .catch(error => dispatch(getHousesFailure( response.data.errors )))
+      .catch(ex => dispatch(getHousesFailure( ex.response.data.errors )))
 }}
 
 export const getHousesRequest = () => ({ type: types.RECEIVE_HOUSES_REQUEST })
 export const getHousesSuccess = houses => ({ type: types.RECEIVE_HOUSES_SUCCESS, houses: houses })
-export const getHousesFailure = errors => ({ type: types.RECEIVE_HOUSES_FAILURE, errors })
+export const getHousesFailure = ex => ({ type: types.RECEIVE_HOUSES_FAILURE, ex })
