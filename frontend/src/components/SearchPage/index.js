@@ -15,9 +15,26 @@ const house_params = {
 const checkboxes = ['Wi-Fi', 'Dog-Friendly', 'Кондиціонер', 'Гараж/Парковка', 'Автономне опалення', 'Мебльована кухня']
 
 class SearchPage extends Component{
+  constructor(props){
+    super(props)
+    this.state = { page: 1, filters: {} }
+  }
 
   componentDidMount(){
-    this.props.getHouses( null )
+    this.props.getHouses( null, 1 )
+  }
+
+  changePage(direction){
+    direction == 'next' ?
+      this.setState({ page: this.state.page + 1 }) :
+      this.setState({ page: this.state.page - 1 })
+  }
+
+  generateFilters(e){
+    e.preventDefault()
+    var form = document.forms[0]
+    var filters = new FormData(form)
+    this.props.getHouses(filters, this.state.page)
   }
 
   render(){
@@ -28,15 +45,15 @@ class SearchPage extends Component{
       <span>
         <Col lgOffset = { 0 } lg = { 12 } >
           <div className = 'card search-bar-props' >
+            <form id = 'search'>
             <div className = 'search-bar-background' ><div className = 'search-bar-gradient' /></div>
             <Row className = 'search-bar-row'>
-              <input className = 'input search-bar-field' placeholder = 'Введіть назву міста' />
-              <input className = 'input search-bar-field' placeholder = 'Виберіть тип житла' />
-              <input className = 'input search-bar-field' placeholder = 'Виберіть дату заїзду' />
-              <span className = 'search-accept-button'><Button label = 'Застосувати фільтр' /></span>
+              <input name = 'filters[city]' className = 'input search-bar-field' placeholder = 'Введіть назву міста' />
+              <input name = 'filters[type_of_building]' className = 'input search-bar-field' placeholder = 'Виберіть тип житла' />
+              <input name = 'filters[rend_end]' className = 'input search-bar-field' placeholder = 'Виберіть дату заїзду' />
+              <span className = 'search-accept-button'><Button handleClick = { (e) => this.generateFilters(e)} label = 'Застосувати фільтр' /></span>
             </Row>
             <Row className = 'search-bar-row'>
-
               { checkboxes.map((label, index) => { return(
                 <span key = {'checkobox_' + index } className = 'search-bar-checkbox'><input id = {'chk' + index} type = 'checkbox' /><label className = 'blue-text' htmlFor = {'chk' + index}> { label } </label></span>
               )})}
@@ -45,6 +62,7 @@ class SearchPage extends Component{
               <div className = 'search-counter'><label htmlFor = 'days-counter' className = 'counter-label blue-text'>Кількість кімнат</label><input id = 'days-counter' name = 'days' className = 'input' type = 'number' min = "1" /></div>
               <div className = 'search-counter'><label htmlFor = 'floor-counter' className = 'counter-label blue-text'>Поверх</label><input id = 'floor-counter' className = 'input' type = 'number' min = "1" /></div>
               </Row>
+            </form>
           </div>
         </Col>
         { isFetching ?
@@ -57,6 +75,9 @@ class SearchPage extends Component{
                 </Col>
               )
             })}
+            <div className = 'pagination'>
+
+            </div>
           </Row>
         }
       </span>
@@ -70,8 +91,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getHouses: ( filters ) => {
-    dispatch(getHouses( filters ))
+  getHouses: ( filters, page ) => {
+    dispatch(getHouses( filters, page ))
   }
 })
 

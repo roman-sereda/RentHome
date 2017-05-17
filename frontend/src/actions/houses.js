@@ -1,10 +1,10 @@
 import * as types from '../actions/action-types';
 import axios from 'axios'
 
-export function getHouses( filters ){
+export function getHouses( filters, page ){
   return dispatch => {
     dispatch(getHousesRequest())
-    return axios.get('/houses/search', { filters: filters })
+    return axios.post('/houses/search', { filters, page} )
       .then(response => dispatch(getHousesSuccess( response.data.houses )))
       .catch(ex => dispatch(getHousesFailure( ex.response.data.errors )))
 }}

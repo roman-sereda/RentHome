@@ -7,7 +7,7 @@ export default function( state = { isFetching: false, data: [], errors: []}, act
       return Object.assign( {}, state, { isFetching: true } )
 
     case types.RECEIVE_HOUSES_SUCCESS:
-      return Object.assign( {}, state, { data: action.houses, isFetching: false} )
+      return { data: action.houses, isFetching: false }
 
     case types.RECEIVE_HOUSES_FAILURE:
         return Object.assign( {}, state, { errors: action.errors, isFetching: false} )
