@@ -50,6 +50,10 @@ GEM
     bcrypt (3.1.11)
     bindex (0.5.0)
     builder (3.2.3)
+    carrierwave (1.0.0)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     concurrent-ruby (1.0.5)
     database_cleaner (1.5.3)
     devise (4.2.0)
@@ -221,6 +225,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  carrierwave (~> 1.0)
   database_cleaner
   devise_token_auth
   dotenv-rails
