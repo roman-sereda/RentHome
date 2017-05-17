@@ -32,7 +32,7 @@ export default class Field extends Component{
             <input {...input_conf} className = 'input' />
             <span className = 'search-calendar'><Calendar type='Arrival' style = 'blue' /></span>
             <span className = 'search-calendar'><Calendar type='Departure' style = 'blue' /></span>
-            <Button label = 'Шукати' />
+            <Button link = '/search' label = 'Шукати' />
           </div>
         </Col>
         <Col lg = {2} md = {1} sm = {1} xs = {1} />

@@ -2,13 +2,9 @@
 
 .card{
   padding: 10px 5px 20px 5px;
-  border-radius: 5px;
-  background-color: white;
   text-align: center;
-  box-shadow: 0 0 60px rgba(121,162,248,0.2);
   height: 460px;
-  margin: 10px;
-  padding: 5px 5px 5px 5px;
+  margin: 15px 10px 15px 10px;
 }
 
 .card:hover{
@@ -16,10 +12,6 @@
 }
 
 /* img-txt*/
-
-.img-txt{
-  padding: 5px 5px 10px 15px;
-}
 
 .card-image{
   height: 250px;
@@ -34,6 +26,7 @@
 
 .description{
   font-size: 20px;
+  padding: 0 20px 0 20px;
 }
 
 .price-text{
