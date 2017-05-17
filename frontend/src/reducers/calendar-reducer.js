@@ -6,7 +6,7 @@ const initialState = {
   dateOfDeparture: null
 }
 
-const user = function(state = initialState, action) {
+const calendar = function(state = initialState, action) {
 
   switch(action.type) {
 
@@ -16,11 +16,11 @@ const user = function(state = initialState, action) {
     case types.SET_DATE_DEPARTURE:
       return Object.assign({}, state, { dateOfDeparture: action.dateDeparture });
 
-    case types.RESET_ALL_DATE:
+    case types.RESET_ALL_CALENDAR_DATA:
       return Object.assign({}, state, { dateArrival: action.reset,
                                         dateOfDeparture: action.reset });
     }
   return state;
 }
 
-export default user;
+export default calendar;
