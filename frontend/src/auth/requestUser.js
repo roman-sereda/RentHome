@@ -35,7 +35,7 @@ function choiseConfig(role){
 
 export function authUser({way, dataUser, role}){
 
-  if (role == "Ви шукаєте чи здаєте житло?"){
+  if (role == null){
     return
   }
 
