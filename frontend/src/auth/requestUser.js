@@ -25,7 +25,7 @@ function createUserThroughGoogle(role) {
 }
 
 function choiseConfig(role){
-  if (role == 'Здаю') {
+  if (role == 'rent') {
     return ('host_user')
   }
   else {

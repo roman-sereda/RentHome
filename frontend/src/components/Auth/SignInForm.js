@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import Button from '../Button'
 
+import { authUser } from '../../auth/requestUser'
+
 export default class SignIn extends Component {
 
   getUserInfo(){
