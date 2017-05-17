@@ -2,7 +2,7 @@ import reducer from '../../src/reducers/house'
 import { expect } from 'chai'
 import * as types from '../../src/actions/action-types.js'
 
-describe('Houses reducer ', () => {
+describe('House reducer ', () => {
 
   const house = { id: 1 }
   const errors = ['error1', 'error2']
