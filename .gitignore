@@ -25,5 +25,7 @@ frontend/node_modules
 tmux-client-2623.log
 tmux-server-2625.log
 
+.env
+
 # Ignore application configuration
 # /config/application.yml

@@ -14,8 +14,8 @@ RSpec.describe Guest, type: :model do
   it { should respond_to(:country) }
   it { should respond_to(:image) }
 
-  it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:surname) }
+  # it { should validate_presence_of(:name) }
+  # it { should validate_presence_of(:surname) }
   it { should validate_presence_of(:email) }
   it { should validate_presence_of(:password) }
 
@@ -24,6 +24,9 @@ RSpec.describe Guest, type: :model do
   it { should allow_value('example@domain.com').for(:email) }
   it { should_not allow_value('exampledomain.com').for(:email) }
   it { should have_db_index(:email) }
+
+  it { should have_many :orders }
+  it { should have_many :reviews }
 
   it { should be_valid }
 end

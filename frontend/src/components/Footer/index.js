@@ -44,8 +44,8 @@ const feedback_conf = {
 export default class Footer extends Component{
   render(){
     return(
-      <div className = 'footer full-width'>
-        <div className = 'footer-top full-width'>
+      <div className = 'footer'>
+        <div className = 'footer-top'>
           <Row>
             <Col {...logo_conf}>
               <span className = 'footer-in-wrapper'>
@@ -53,14 +53,14 @@ export default class Footer extends Component{
               </span>
             </Col>
             <Col {...text_conf} >
-              <Row lgOffset = { 1 }>
-                {data.map((col) => {
+              <Row>
+                {data.map((col, index) => {
                   return(
-                    <Col {...text_el_conf} >
+                    <Col {...text_el_conf} key = { 'footer_col' + index }>
                       <div className = 'footer-text-block footer-text' key = { 'footer-col-' + col } >
-                        {col.map((el) => {
+                        {col.map((el, index) => {
                           return(
-                            <Link to = { el[1] } key = { 'footer-el-' + el } className = 'white-text footer-text'>
+                            <Link to = { el[1] } key = { 'footer-el-' + index } className = 'white-text footer-text'>
                               { el[0] }<br />
                             </Link>
                           )
@@ -73,9 +73,9 @@ export default class Footer extends Component{
             </Col>
             <Col {...feedback_conf}>
               <span className = 'feedback-buttons'>
-                { feedback.map((label) => {
+                { feedback.map((label, index) => {
                   return(
-                    <img src = { '/' + label + '.png' } className = 'feedback-icon' />
+                    <img key = { 'footer-img' + index} src = { '/' + label + '.png' } className = 'feedback-icon' />
                   )
                 })}
               </span>

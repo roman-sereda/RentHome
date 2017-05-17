@@ -15,7 +15,9 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'kaminari'
 gem 'impressionist'
+gem 'stripe'
 gem 'figaro'
+gem 'carrierwave', '~> 1.0'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
@@ -23,6 +25,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'ffaker'
   gem 'database_cleaner'
+  gem 'dotenv-rails'
 end
 
 group :development do

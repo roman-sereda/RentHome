@@ -7,7 +7,7 @@ export default class Button extends Component{
     const propsToStyle = this.props.white ? { opacity: 0.8 } : null
     return(
       <Link to = { this.props.link } >
-        <div className = 'button' style = { propsToStyle } >
+        <div onClick = { this.props.handleClick ? (e) => this.props.handleClick(e) : null } className = 'button' style = { propsToStyle } >
           { this.props.label }
         </div>
       </Link>

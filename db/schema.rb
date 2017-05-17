@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170511064140) do
+ActiveRecord::Schema.define(version: 20170517053913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,11 +95,19 @@ ActiveRecord::Schema.define(version: 20170511064140) do
     t.date     "rent_end"
     t.integer  "rooms"
     t.string   "city"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.decimal  "price_per_day"
     t.decimal  "price_per_month"
     t.integer  "host_id"
+    t.text     "description"
+    t.integer  "rating",           default: 0
+    t.integer  "type_of_building"
+    t.string   "title"
+    t.string   "address"
+    t.integer  "sleep_places"
+    t.float    "total_area"
+    t.integer  "apartment_number"
     t.index ["host_id"], name: "index_houses_on_host_id", using: :btree
   end
 
@@ -129,5 +137,51 @@ ActiveRecord::Schema.define(version: 20170511064140) do
     t.index ["user_id"], name: "index_impressions_on_user_id", using: :btree
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer  "guest_id"
+    t.integer  "house_id"
+    t.date     "start_time"
+    t.date     "end_time"
+    t.boolean  "paid"
+    t.decimal  "total_price"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["guest_id"], name: "index_orders_on_guest_id", using: :btree
+    t.index ["house_id"], name: "index_orders_on_house_id", using: :btree
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.string   "image"
+    t.boolean  "feachered"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text     "text"
+    t.integer  "rating"
+    t.integer  "guest_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "house_id"
+    t.index ["guest_id"], name: "index_reviews_on_guest_id", using: :btree
+    t.index ["house_id"], name: "index_reviews_on_house_id", using: :btree
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.date     "end_time"
+    t.integer  "host_id"
+    t.string   "email"
+    t.string   "card_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["host_id"], name: "index_subscriptions_on_host_id", using: :btree
+  end
+
   add_foreign_key "houses", "hosts"
+  add_foreign_key "orders", "guests"
+  add_foreign_key "orders", "houses"
+  add_foreign_key "reviews", "guests"
+  add_foreign_key "reviews", "houses"
+  add_foreign_key "subscriptions", "hosts"
 end

@@ -28,22 +28,12 @@ describe('<Auth /> should', () => {
     expect(AuthMount.props().routes[2].auth).to.equal('signin')
   })
 
-  it('change signin button className if on signin page', () => {
-    expect(AuthMount.find('#signin').hasClass('pressed')).to.equal(true)
-  })
-
-  it('change buttons style if change props', () => {
-    AuthMount.instance().addPressButtonEffect('signup')
-    expect(AuthMount.find('#signin').hasClass('pressed')).to.equal(false)
-    expect(AuthMount.find('#signup').hasClass('pressed')).to.equal(true)
-  })
-
-  it('live component if was clicked not on the modal window', () => {
+  /*it('live component if was clicked not on the modal window', () => {
     router.browserHistory = { push: () => {} }
     let browserHistoryPushStub = sinon.spy(router.browserHistory, 'push')
     simulant.fire(document.body.querySelector('#modal-window'), 'click')
     sinon.assert.calledOnce(browserHistoryPushStub)
-  })
+  })*/
 
 
 })
