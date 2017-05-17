@@ -16,7 +16,7 @@ export function setDateDeparture(dateDeparture) {
 
 export function resetAllCalendarData() {
   return {
-    type: types.RESET_ALL_CALENDAR_DATA,
+    type: types.RESET_ALL_CALENDAR_DATE,
     reset: null
   }
 }

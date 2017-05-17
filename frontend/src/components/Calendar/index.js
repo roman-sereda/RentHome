@@ -11,6 +11,7 @@ import { connect }  from 'react-redux';
 import { setDateArrival,
          setDateDeparture } from '../../actions/action-calendar'
 
+
 class Calendar extends Component{
 
   constructor() {
