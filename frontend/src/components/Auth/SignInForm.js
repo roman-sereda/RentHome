@@ -27,6 +27,7 @@ export default class SignIn extends Component {
   render(){
     return(
       <div>
+        <Role changeRole = {( role ) => this.changeRole( role )} />
         <h3 className = 'black-text auth-separator-text'></h3>
         <div className = 'auth-social-button'><Button label = 'Увійти через Facebook' handleClick = {() => authUser({way: 'facebook', role: this.state.role}) } /></div>
         <div className = 'auth-social-button'><Button label = 'Увійти через Google+' handleClick = {() => authUser({way: 'google', role: this.state.role}) } /></div>
