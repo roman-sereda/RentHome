@@ -29,7 +29,13 @@ end
       heating: true,
       conditioner: true,
       price_per_day: 13.37 * n,
-      price_per_month: 22.8 * n
+      price_per_month: 22.8 * n,
+      title: "house",
+      type_of_building: 1,
+      address: "address",
+      sleep_places: 1,
+      total_area: 10,
+      apartment_number: 13,
       )
   end
 end
