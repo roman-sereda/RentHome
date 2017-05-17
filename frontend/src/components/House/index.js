@@ -23,7 +23,7 @@ class House extends Component{
         { this.props.isFetching ? <Loading /> :
         <span>
           <Row>
-            <Col lg = { 7 }>
+            <Col lg = { 7 } md = { 5 } xs = { 12 }>
               <div className = 'template'>
                 <Carousel className = 'house-image' />
               </div>
@@ -56,7 +56,7 @@ class House extends Component{
                 </Row>
               </div>
             </Col>
-            <Col lg  = { 5 }>
+            <Col lg  = { 5 } md = { 5 } xs = { 12 }>
               <div className = 'template house-date-picker'>
                 <div className = 'house-title black-text'> Title here</div>
                 <div className = 'search-calendar'><Calendar type='Arrival' style = 'white' /></div>
