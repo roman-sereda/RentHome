@@ -16,7 +16,7 @@ const calendar = function(state = initialState, action) {
     case types.SET_DATE_DEPARTURE:
       return Object.assign({}, state, { dateOfDeparture: action.dateDeparture });
 
-    case types.RESET_ALL_DATE:
+    case types.RESET_ALL_CALENDAR_DATA:
       return Object.assign({}, state, { dateArrival: action.reset,
                                         dateOfDeparture: action.reset });
     }
