@@ -14,8 +14,8 @@ export default (
   <Router history = { browserHistory} >
     <Route component = { App } >
       <Route path = "/house/:id" component = { House } />
-      <Route path = "/" component={ WelcomePage } >
-      </Route>
+      <Route path = "/" component={ WelcomePage } />
+      <Route path = '/search' component = { Search } />
     </Route>
   </Router>
 )

@@ -1,0 +1,67 @@
+.search-bar-props{
+  width: 100%;
+  margin: 30px 0 35px 0;
+  padding: 15px 0 15px 0;
+  text-align: center;
+}
+
+.search-bar-background{
+  position: absolute;
+  width: 100%;
+  height: 500px;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-image: url('https://static1.comicvine.com/uploads/original/11128/111283068/5260519-franku+%28kys%29.jpg');
+  }
+
+.search-bar-gradient{
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient( to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+  background-repeat: no-repeat;
+}
+
+.search-bar-checkbox{
+  margin-right: 10px;
+  margin: auto;
+  margin-bottom: 5px;
+}
+
+.search-bar-field{
+  margin-right: 10px;
+  margin: auto;
+}
+
+.input{
+  width: auto !important;
+  margin-bottom: 5px !important;
+}
+
+.search-bar-row{
+  margin-bottom: 15px;
+  text-align: center;
+  padding: 0 25px 0 25px;
+}
+
+.search-accept-button{
+  margin: auto;
+  margin-bottom: 5px;
+}
+
+.card{
+  height: auto !important;
+}
+
+#days-counter, #floor-counter, #choose-counter{
+  padding: 5px 15px 5px 15px !important;
+  width: 50px !important;
+  margin-right: 20px;
+}
+
+.counter-label{
+  padding-top: 5px;
+  margin-right: 10px;
+}
