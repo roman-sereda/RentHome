@@ -43,7 +43,7 @@ class SearchPage extends Component{
             </Row>
             <Row className = 'search-bar-row'>
               <div className = 'search-counter'><label htmlFor = 'days-counter' className = 'counter-label blue-text'>Кількість кімнат</label><input id = 'days-counter' name = 'days' className = 'input' type = 'number' min = "1" /></div>
-              <div className = 'search-counter'><label htmlFor = 'floor-counter' className = 'counter-label blue-text'>Поверх</label><input id = 'floor-counter' className = 'input' type = 'number' mmin = "1" /></div>
+              <div className = 'search-counter'><label htmlFor = 'floor-counter' className = 'counter-label blue-text'>Поверх</label><input id = 'floor-counter' className = 'input' type = 'number' min = "1" /></div>
               </Row>
           </div>
         </Col>
