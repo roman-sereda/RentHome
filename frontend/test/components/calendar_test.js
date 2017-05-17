@@ -62,7 +62,7 @@ const DepartureCalendarWithEmptyMockStoreMount = mount(<Calendar type='Departure
 
 const todaysNumber = todaysDate.getDate()
 
-const numbernumberDayTheMonthBegins = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), 1).getUTCDay()
+const numberDayTheMonthBegins = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), 1).getUTCDay()
 
 const dayCountInPrevMonth = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), 0).getDate()
 

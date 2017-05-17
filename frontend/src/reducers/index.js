@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 
-import user from './user-reducer'
+import user from './user'
 import houses from './houses'
 import house from './house'
-import calendar from './calendar-reducer'
+import calendar from './calendar'
 
 
 var reducers = combineReducers({
