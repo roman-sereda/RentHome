@@ -14,7 +14,6 @@ export default class Auth extends Component {
   handleClick(event){
     var modal = document.getElementById('modal-window')
     if(event.target == modal){
-      console.log('hyi')
       this.props.hideAuthPopup()
     }
   }
