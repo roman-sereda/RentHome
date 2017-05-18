@@ -1,22 +1,7 @@
 import * as types from '../actions/action-types';
 
-export function setDateArrival(dateArrival) {
-  return {
-    type: types.SET_DATE_ARRIVAL,
-    dateArrival
-  };
-}
+export const setDateArrival = dateArrival => ({ type: types.SET_DATE_ARRIVAL, dateArrival })
 
-export function setDateDeparture(dateDeparture) {
-  return {
-    type: types.SET_DATE_DEPARTURE,
-    dateDeparture
-  }
-}
+export const setDateDeparture = dateDeparture => ({ type: types.SET_DATE_DEPARTURE, dateDeparture })
 
-export function resetAllCalendarData() {
-  return {
-    type: types.RESET_ALL_CALENDAR_DATE,
-    reset: null
-  }
-}
+export const resetAllCalendarData = () => ({ type: types.RESET_ALL_CALENDAR_DATE, reset: null })
