@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import Button from '../Button'
+import Role from './Role'
 
 import { authUser } from '../../auth/requestUser'
 

@@ -3,7 +3,6 @@ html, body{
   margin: 0;
   font-family: Arial;
   font-size: 14px;
-  background-color: white;
 }
 
 .white-text{
@@ -18,6 +17,12 @@ html, body{
   color: #9ca6b8;
 }
 
+.card{
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 0 0 60px rgba(0,0,100,0.2);
+}
+
 .red-text{
   color: red;
 }
@@ -25,6 +30,7 @@ html, body{
 .row{
   margin-left: 0 !important;
   margin-right: 0 !important;
+  background: rgba(0,0,0,0);
 }
 
 .text-left{
@@ -52,6 +58,28 @@ html, body{
 a {
   text-decoration: none;
 }
+
+input[type="checkbox"]{
+  display: none;
+}
+
+input[type="checkbox"] + label::before{
+  color: white;
+  content: '.';
+  box-shadow: 0 0 3px rgba(0,0,0,0.2);
+  height: 18px;
+  border-radius: 15px;
+  width: 22px;
+  background-color: white;
+  display: inline-block;
+}
+
+input[type="checkbox"]:checked + label::before{
+  content: '\2714';
+  background: linear-gradient(to left,#76a6f8, #8b94fd );
+}
+
+
 
 ::-webkit-input-placeholder{ color: #7aa2f8; }
 :-moz-placeholder{ color: #7aa2f8; }

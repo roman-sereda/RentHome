@@ -9,13 +9,14 @@ import Auth             from './components/Auth'
 import SignUp           from './components/Auth/SignUpForm'
 import SignIn           from './components/Auth/SignInForm'
 import House            from './components/House'
+import Search           from './components/SearchPage'
 
 export default (
   <Router history = { browserHistory} >
     <Route component = { App } >
       <Route path = "/house/:id" component = { House } />
-      <Route path = "/" component={ WelcomePage } >
-      </Route>
+      <Route path = "/" component={ WelcomePage } />
+      <Route path = '/search' component = { Search } />
     </Route>
   </Router>
 )
